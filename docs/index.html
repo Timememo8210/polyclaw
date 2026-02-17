@@ -136,7 +136,21 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
 <div class="toast" id="toast"></div>
 
 <script>
-const GAMMA_API = 'https://gamma-api.polymarket.com';
+const GAMMA_BASE = 'https://gamma-api.polymarket.com';
+const PROXIES = [
+  (u) => `https://api.allorigins.win/raw?url=${encodeURIComponent(u)}`,
+  (u) => `https://corsproxy.io/?${encodeURIComponent(u)}`,
+  (u) => u, // direct (in case they enable CORS)
+];
+async function fetchCors(url) {
+  for (const proxy of PROXIES) {
+    try {
+      const resp = await fetch(proxy(url), {signal: AbortSignal.timeout(12000)});
+      if (resp.ok) return resp;
+    } catch(e) { continue; }
+  }
+  throw new Error('所有API代理均不可用');
+}
 const STARTING_BALANCE = 1000;
 const STORAGE_KEY = 'polyclaw_portfolio';
 
@@ -182,7 +196,7 @@ async function loadMarkets() {
   const el = document.getElementById('markets-list');
   el.innerHTML = '<div class="loading">加载中...</div>';
   try {
-    const resp = await fetch(`${GAMMA_API}/markets?limit=30&active=true&closed=false&order=volume24hr&ascending=false`);
+    const resp = await fetchCors(`${GAMMA_BASE}/markets?limit=30&active=true&closed=false&order=volume24hr&ascending=false`);
     const raw = await resp.json();
     marketsData = raw.map(m => {
       let py = 0, pn = 0;
