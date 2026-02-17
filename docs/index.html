@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🐾 PolyClaw - 模拟交易</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background:#0d1117; color:#c9d1d9; min-height:100vh; }
+.header { background:linear-gradient(135deg,#161b22,#1a1f2e); border-bottom:1px solid #30363d; padding:20px 32px; display:flex; justify-content:space-between; align-items:center; }
+.header h1 { font-size:24px; }
+.header h1 span { color:#58a6ff; }
+.stats { display:flex; gap:24px; }
+.stat { text-align:right; }
+.stat .label { font-size:12px; color:#8b949e; }
+.stat .value { font-size:20px; font-weight:700; }
+.stat .value.pos { color:#3fb950; }
+.stat .value.neg { color:#f85149; }
+.container { max-width:1200px; margin:0 auto; padding:24px; }
+.tabs { display:flex; gap:8px; margin-bottom:20px; }
+.tab { padding:8px 20px; border-radius:8px; cursor:pointer; background:#21262d; border:1px solid #30363d; color:#8b949e; font-size:14px; transition:all .2s; user-select:none; }
+.tab.active, .tab:hover { background:#1f6feb; color:#fff; border-color:#1f6feb; }
+.card { background:#161b22; border:1px solid #30363d; border-radius:12px; margin-bottom:16px; overflow:hidden; }
+.card-header { padding:16px 20px; border-bottom:1px solid #30363d; font-weight:600; display:flex; justify-content:space-between; align-items:center; }
+.market-row { padding:14px 20px; border-bottom:1px solid #21262d; display:flex; align-items:center; gap:16px; transition:background .15s; cursor:pointer; }
+.market-row:hover { background:#1c2333; }
+.market-row:last-child { border-bottom:none; }
+.market-q { flex:1; font-size:14px; line-height:1.4; }
+.market-price { text-align:center; min-width:70px; }
+.market-price .pct { font-size:22px; font-weight:700; color:#58a6ff; }
+.market-price .sub { font-size:11px; color:#8b949e; }
+.market-vol { text-align:right; min-width:90px; font-size:13px; color:#8b949e; }
+.trade-panel { display:none; background:#1c2333; padding:16px 20px; border-top:1px solid #30363d; }
+.trade-panel.open { display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
+.trade-btn { padding:8px 18px; border-radius:6px; border:none; cursor:pointer; font-weight:600; font-size:13px; transition:all .15s; }
+.btn-yes { background:#238636; color:#fff; }
+.btn-yes:hover { background:#2ea043; }
+.btn-no { background:#da3633; color:#fff; }
+.btn-no:hover { background:#f85149; }
+.btn-sell { background:#6e40c9; color:#fff; padding:6px 14px; border-radius:6px; border:none; cursor:pointer; font-size:12px; font-weight:600; }
+.btn-sell:hover { background:#8957e5; }
+.btn-reset { background:#21262d; color:#8b949e; border:1px solid #30363d; padding:6px 14px; border-radius:6px; cursor:pointer; font-size:12px; }
+.btn-reset:hover { color:#f85149; border-color:#f85149; }
+.trade-input { background:#0d1117; border:1px solid #30363d; color:#c9d1d9; padding:8px 12px; border-radius:6px; width:100px; font-size:14px; }
+.trade-input:focus { outline:none; border-color:#58a6ff; }
+.pos-row { padding:14px 20px; border-bottom:1px solid #21262d; display:flex; align-items:center; gap:16px; }
+.pos-row:last-child { border-bottom:none; }
+.pos-side { padding:2px 8px; border-radius:4px; font-size:11px; font-weight:700; display:inline-block; }
+.pos-side.yes { background:#238636; color:#fff; }
+.pos-side.no { background:#da3633; color:#fff; }
+.pnl-pos { color:#3fb950; }
+.pnl-neg { color:#f85149; }
+.empty { padding:40px; text-align:center; color:#484f58; }
+.toast { position:fixed; top:20px; right:20px; background:#238636; color:#fff; padding:12px 20px; border-radius:8px; font-size:14px; z-index:999; display:none; box-shadow:0 4px 12px rgba(0,0,0,.4); max-width:360px; }
+.toast.error { background:#da3633; }
+.refresh-btn { background:none; border:1px solid #30363d; color:#8b949e; padding:4px 12px; border-radius:6px; cursor:pointer; font-size:12px; }
+.refresh-btn:hover { color:#58a6ff; border-color:#58a6ff; }
+.loading { text-align:center; padding:40px; color:#484f58; }
+.hist-row { padding:10px 20px; border-bottom:1px solid #21262d; display:flex; align-items:center; gap:12px; font-size:13px; }
+.hist-row:last-child { border-bottom:none; }
+.hist-action { padding:2px 8px; border-radius:4px; font-size:11px; font-weight:700; }
+.hist-buy { background:#238636; color:#fff; }
+.hist-sell { background:#6e40c9; color:#fff; }
+.footer { text-align:center; padding:32px; color:#484f58; font-size:12px; }
+.footer a { color:#58a6ff; text-decoration:none; }
+@media(max-width:600px) {
+  .header { flex-direction:column; gap:12px; padding:16px; }
+  .stats { justify-content:space-around; width:100%; }
+  .market-row { flex-wrap:wrap; gap:8px; }
+  .market-vol { display:none; }
+  .container { padding:12px; }
+  .trade-panel.open { flex-direction:column; align-items:stretch; }
+  .trade-panel.open .trade-input { width:100%; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🐾 <span>PolyClaw</span> 模拟交易</h1>
+  <div class="stats">
+    <div class="stat">
+      <div class="label">💰 账户总值</div>
+      <div class="value" id="total-value">$1,000</div>
+    </div>
+    <div class="stat">
+      <div class="label">📊 盈亏</div>
+      <div class="value" id="total-pnl">$0.00</div>
+    </div>
+    <div class="stat">
+      <div class="label">💵 可用</div>
+      <div class="value" id="balance">$1,000</div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="tabs">
+    <div class="tab active" data-tab="markets">🔥 热门市场</div>
+    <div class="tab" data-tab="portfolio">📋 我的持仓</div>
+    <div class="tab" data-tab="history">📜 交易记录</div>
+  </div>
+
+  <div id="markets-tab">
+    <div class="card">
+      <div class="card-header">
+        热门市场（按24h交易量排序）
+        <button class="refresh-btn" onclick="loadMarkets()">🔄 刷新</button>
+      </div>
+      <div id="markets-list"><div class="loading">加载中...</div></div>
+    </div>
+  </div>
+
+  <div id="portfolio-tab" style="display:none">
+    <div class="card">
+      <div class="card-header">
+        当前持仓
+        <button class="btn-reset" onclick="resetPortfolio()">🗑️ 重置账户</button>
+      </div>
+      <div id="positions-list"><div class="empty">暂无持仓，去市场看看吧 👀</div></div>
+    </div>
+  </div>
+
+  <div id="history-tab" style="display:none">
+    <div class="card">
+      <div class="card-header">交易记录</div>
+      <div id="history-list"><div class="empty">还没有交易记录</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  🐾 PolyClaw — 模拟交易，不涉及真实资金 | <a href="https://github.com/Timememo8210/polyclaw" target="_blank">GitHub</a>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const GAMMA_API = 'https://gamma-api.polymarket.com';
+const STARTING_BALANCE = 1000;
+const STORAGE_KEY = 'polyclaw_portfolio';
+
+// ===== Storage =====
+function loadPortfolioData() {
+  try {
+    const d = JSON.parse(localStorage.getItem(STORAGE_KEY));
+    if (d && d.balance !== undefined) return d;
+  } catch(e) {}
+  return { balance: STARTING_BALANCE, positions: {}, history: [] };
+}
+function savePortfolio(d) { localStorage.setItem(STORAGE_KEY, JSON.stringify(d)); }
+
+// ===== State =====
+let marketsData = [];
+let openTradeId = null;
+
+// ===== UI Helpers =====
+function toast(msg, isError) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast' + (isError ? ' error' : '');
+  t.style.display = 'block';
+  setTimeout(() => t.style.display = 'none', 3500);
+}
+function fmt(n) { return n >= 1e6 ? `$${(n/1e6).toFixed(1)}M` : n >= 1000 ? `$${(n/1000).toFixed(0)}K` : `$${n.toFixed(0)}`; }
+
+// ===== Tabs =====
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    const name = tab.dataset.tab;
+    ['markets','portfolio','history'].forEach(t => {
+      document.getElementById(t+'-tab').style.display = t === name ? '' : 'none';
+    });
+    if (name !== 'markets') renderPortfolio();
+  });
+});
+
+// ===== Fetch Markets =====
+async function loadMarkets() {
+  const el = document.getElementById('markets-list');
+  el.innerHTML = '<div class="loading">加载中...</div>';
+  try {
+    const resp = await fetch(`${GAMMA_API}/markets?limit=30&active=true&closed=false&order=volume24hr&ascending=false`);
+    const raw = await resp.json();
+    marketsData = raw.map(m => {
+      let py = 0, pn = 0;
+      try { const p = JSON.parse(m.outcomePrices || '[]'); py = +p[0]||0; pn = +p[1]||0; } catch(e){}
+      return {
+        id: m.id, question: m.question||'', outcome_yes: py, outcome_no: pn,
+        volume_24h: +(m.volume24hr||0), volume_total: +(m.volumeNum||0),
+        liquidity: +(m.liquidityNum||0), end_date: m.endDate||'', category: m.groupSlug||''
+      };
+    });
+    renderMarkets();
+  } catch(e) { el.innerHTML = `<div class="empty">加载失败: ${e.message}</div>`; }
+}
+
+function renderMarkets() {
+  const el = document.getElementById('markets-list');
+  if (!marketsData.length) { el.innerHTML = '<div class="empty">暂无数据</div>'; return; }
+  el.innerHTML = marketsData.map((m,i) => `
+    <div>
+      <div class="market-row" onclick="toggleTrade(${i})">
+        <div class="market-q">${esc(m.question)}</div>
+        <div class="market-price">
+          <div class="pct">${(m.outcome_yes*100).toFixed(0)}%</div>
+          <div class="sub">YES</div>
+        </div>
+        <div class="market-vol">${fmt(m.volume_24h)}<br><span style="font-size:11px">24h</span></div>
+      </div>
+      <div class="trade-panel ${openTradeId===i?'open':''}" id="trade-${i}">
+        <span style="font-size:13px;color:#8b949e">投入 $</span>
+        <input class="trade-input" id="amt-${i}" type="number" value="50" min="1" step="10">
+        <button class="trade-btn btn-yes" onclick="doBuy(${i},'yes')">买 YES ${(m.outcome_yes*100).toFixed(0)}¢</button>
+        <button class="trade-btn btn-no" onclick="doBuy(${i},'no')">买 NO ${(m.outcome_no*100).toFixed(0)}¢</button>
+      </div>
+    </div>
+  `).join('');
+}
+function esc(s) { const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+function toggleTrade(i) { openTradeId = openTradeId===i ? null : i; renderMarkets(); }
+
+// ===== Trading =====
+function doBuy(i, side) {
+  const m = marketsData[i];
+  const amount = parseFloat(document.getElementById(`amt-${i}`).value);
+  if (!amount || amount <= 0) { toast('请输入有效金额', true); return; }
+  const price = side === 'yes' ? m.outcome_yes : m.outcome_no;
+  if (price <= 0 || price >= 1) { toast('价格异常，无法交易', true); return; }
+
+  const data = loadPortfolioData();
+  if (amount > data.balance) { toast(`余额不足！可用: $${data.balance.toFixed(2)}`, true); return; }
+
+  const shares = amount / price;
+  data.balance -= amount;
+  const key = `${m.id}_${side}`;
+
+  if (data.positions[key]) {
+    const pos = data.positions[key];
+    const total = pos.shares + shares;
+    pos.avg_price = (pos.shares * pos.avg_price + shares * price) / total;
+    pos.shares = total;
+  } else {
+    data.positions[key] = { market_id:m.id, question:m.question, side, shares, avg_price:price, bought_at:new Date().toISOString() };
+  }
+  data.history.push({ action:'buy', question:m.question, side, price, amount, shares, time:new Date().toISOString() });
+  savePortfolio(data);
+  updateHeader();
+  toast(`✅ 买入 ${shares.toFixed(1)} 股 ${side.toUpperCase()} @ ${(price*100).toFixed(0)}¢ | 花费 $${amount}`);
+}
+
+function doSell(key) {
+  const data = loadPortfolioData();
+  const pos = data.positions[key];
+  if (!pos) return;
+  // find current price from markets
+  const m = marketsData.find(x => x.id === pos.market_id);
+  const price = m ? (pos.side === 'yes' ? m.outcome_yes : m.outcome_no) : pos.avg_price;
+  const proceeds = pos.shares * price;
+  const profit = (price - pos.avg_price) * pos.shares;
+  data.balance += proceeds;
+  data.history.push({ action:'sell', question:pos.question, side:pos.side, price, shares:pos.shares, proceeds, profit, time:new Date().toISOString() });
+  delete data.positions[key];
+  savePortfolio(data);
+  updateHeader();
+  renderPortfolio();
+  toast(`✅ 卖出 | 收回 $${proceeds.toFixed(2)} | ${profit>=0?'赚':'亏'} $${Math.abs(profit).toFixed(2)}`);
+}
+
+// ===== Portfolio =====
+function updateHeader() {
+  const data = loadPortfolioData();
+  let posValue = 0;
+  for (const [k,pos] of Object.entries(data.positions)) {
+    const m = marketsData.find(x => x.id === pos.market_id);
+    const cp = m ? (pos.side === 'yes' ? m.outcome_yes : m.outcome_no) : pos.avg_price;
+    posValue += pos.shares * cp;
+  }
+  const total = data.balance + posValue;
+  const pnl = total - STARTING_BALANCE;
+  document.getElementById('total-value').textContent = `$${total.toFixed(0)}`;
+  const pnlEl = document.getElementById('total-pnl');
+  pnlEl.textContent = `${pnl>=0?'+':''}$${pnl.toFixed(2)}`;
+  pnlEl.className = `value ${pnl>=0?'pos':'neg'}`;
+  document.getElementById('balance').textContent = `$${data.balance.toFixed(0)}`;
+}
+
+function renderPortfolio() {
+  const data = loadPortfolioData();
+  const posEl = document.getElementById('positions-list');
+  const histEl = document.getElementById('history-list');
+  const entries = Object.entries(data.positions);
+
+  if (!entries.length) {
+    posEl.innerHTML = '<div class="empty">暂无持仓，去市场看看吧 👀</div>';
+  } else {
+    posEl.innerHTML = entries.map(([key, pos]) => {
+      const m = marketsData.find(x => x.id === pos.market_id);
+      const cp = m ? (pos.side === 'yes' ? m.outcome_yes : m.outcome_no) : pos.avg_price;
+      const value = pos.shares * cp;
+      const cost = pos.shares * pos.avg_price;
+      const pnl = value - cost;
+      const pnlPct = cost > 0 ? (pnl/cost*100).toFixed(1) : '0.0';
+      return `<div class="pos-row">
+        <span class="pos-side ${pos.side}">${pos.side.toUpperCase()}</span>
+        <div style="flex:1">
+          <div style="font-size:14px">${esc(pos.question)}</div>
+          <div style="font-size:12px;color:#8b949e">${pos.shares.toFixed(1)}股 @ ${(pos.avg_price*100).toFixed(0)}¢ → 现价 ${(cp*100).toFixed(0)}¢</div>
+        </div>
+        <div style="text-align:right;min-width:80px">
+          <div>$${value.toFixed(2)}</div>
+          <div class="${pnl>=0?'pnl-pos':'pnl-neg'}" style="font-size:13px">${pnl>=0?'+':''}$${pnl.toFixed(2)} (${pnlPct}%)</div>
+        </div>
+        <button class="btn-sell" onclick="doSell('${key}')">卖出</button>
+      </div>`;
+    }).join('');
+  }
+
+  if (!data.history || !data.history.length) {
+    histEl.innerHTML = '<div class="empty">还没有交易记录</div>';
+  } else {
+    histEl.innerHTML = data.history.slice().reverse().map(h => {
+      const isBuy = h.action === 'buy';
+      const time = new Date(h.time).toLocaleString('zh-CN', {month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'});
+      return `<div class="hist-row">
+        <span class="hist-action ${isBuy?'hist-buy':'hist-sell'}">${isBuy?'买入':'卖出'}</span>
+        <span class="pos-side ${h.side}" style="font-size:10px">${h.side.toUpperCase()}</span>
+        <div style="flex:1;font-size:13px">${esc(h.question)}</div>
+        <div style="color:#8b949e;font-size:12px">${h.shares.toFixed(1)}股 @ ${(h.price*100).toFixed(0)}¢</div>
+        <div style="font-size:12px">${isBuy ? '-$'+h.amount.toFixed(0) : '+$'+h.proceeds.toFixed(0)}</div>
+        <div style="color:#484f58;font-size:11px">${time}</div>
+      </div>`;
+    }).join('');
+  }
+}
+
+function resetPortfolio() {
+  if (!confirm('确定重置？所有持仓和记录将清零！')) return;
+  localStorage.removeItem(STORAGE_KEY);
+  updateHeader();
+  renderPortfolio();
+  toast('✅ 账户已重置，$1,000 重新开始');
+}
+
+// ===== Init =====
+loadMarkets();
+updateHeader();
+</script>
+</body>
+</html>
