@@ -1,5 +1,5 @@
 {
-  "balance": 8145.06,
+  "balance": 6994.45,
   "positions": {
     "984441_no": {
       "market_id": "984441",
@@ -36,6 +36,51 @@
       "avg_price": 0.415,
       "bought_at": "2026-02-18T11:00:03.826427",
       "score": 72
+    },
+    "1341285_no": {
+      "market_id": "1341285",
+      "question": "Will FC Internazionale Milano win on 2026-02-18?",
+      "side": "no",
+      "shares": 537.03,
+      "avg_price": 0.455,
+      "bought_at": "2026-02-18T11:36:56.576988",
+      "score": 70
+    },
+    "984442_no": {
+      "market_id": "984442",
+      "question": "US strikes Iran by June 30, 2026?",
+      "side": "no",
+      "shares": 707.52,
+      "avg_price": 0.335,
+      "bought_at": "2026-02-18T11:36:56.577008",
+      "score": 60
+    },
+    "553828_yes": {
+      "market_id": "553828",
+      "question": "Will the Colorado Avalanche win the 2026 NHL Stanley Cup?",
+      "side": "yes",
+      "shares": 1010.59,
+      "avg_price": 0.2275,
+      "bought_at": "2026-02-18T11:36:56.577017",
+      "score": 55
+    },
+    "566737_yes": {
+      "market_id": "566737",
+      "question": "Will Lens win the 2025–26 French Ligue 1?",
+      "side": "yes",
+      "shares": 1476.89,
+      "avg_price": 0.151,
+      "bought_at": "2026-02-18T11:36:56.577025",
+      "score": 46
+    },
+    "1337788_no": {
+      "market_id": "1337788",
+      "question": "Will Arsenal FC win on 2026-02-18?",
+      "side": "no",
+      "shares": 1006.14,
+      "avg_price": 0.215,
+      "bought_at": "2026-02-18T11:36:56.577031",
+      "score": 46
     }
   },
   "history": [
@@ -78,9 +123,59 @@
       "shares": 1032.99,
       "score": 72,
       "time": "2026-02-18T11:00:03.826431"
+    },
+    {
+      "action": "buy",
+      "question": "Will FC Internazionale Milano win on 2026-02-18?",
+      "side": "no",
+      "price": 0.455,
+      "amount": 244.35,
+      "shares": 537.03,
+      "score": 70,
+      "time": "2026-02-18T11:36:56.576995"
+    },
+    {
+      "action": "buy",
+      "question": "US strikes Iran by June 30, 2026?",
+      "side": "no",
+      "price": 0.335,
+      "amount": 237.02,
+      "shares": 707.52,
+      "score": 60,
+      "time": "2026-02-18T11:36:56.577011"
+    },
+    {
+      "action": "buy",
+      "question": "Will the Colorado Avalanche win the 2026 NHL Stanley Cup?",
+      "side": "yes",
+      "price": 0.2275,
+      "amount": 229.91,
+      "shares": 1010.59,
+      "score": 55,
+      "time": "2026-02-18T11:36:56.577020"
+    },
+    {
+      "action": "buy",
+      "question": "Will Lens win the 2025–26 French Ligue 1?",
+      "side": "yes",
+      "price": 0.151,
+      "amount": 223.01,
+      "shares": 1476.89,
+      "score": 46,
+      "time": "2026-02-18T11:36:56.577026"
+    },
+    {
+      "action": "buy",
+      "question": "Will Arsenal FC win on 2026-02-18?",
+      "side": "no",
+      "price": 0.215,
+      "amount": 216.32,
+      "shares": 1006.14,
+      "score": 46,
+      "time": "2026-02-18T11:36:56.577033"
     }
   ],
   "daily_snapshots": [],
   "created": "2026-02-18T10:31:42.254192",
-  "last_trade": "2026-02-18T11:00:03.826436"
+  "last_trade": "2026-02-18T11:36:56.577036"
 }

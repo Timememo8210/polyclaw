@@ -18,12 +18,12 @@ from market_data import get_trending_markets
 
 PORTFOLIO_FILE = os.path.join(os.path.dirname(__file__), "auto_portfolio.json")
 STARTING_BALANCE = 10000.0
-MAX_POSITIONS = 10
-MAX_POSITION_PCT = 0.05  # 5% of balance per trade
+MAX_POSITIONS = 25
+MAX_POSITION_PCT = 0.03  # 3% of balance per trade
 MIN_PRICE = 0.15
 MAX_PRICE = 0.85
-TAKE_PROFIT = 0.30   # +30%
-STOP_LOSS = -0.25     # -25%
+TAKE_PROFIT = 0.15   # +15%
+STOP_LOSS = -0.15     # -15%
 MIN_VOLUME_24H = 50000  # minimum 24h volume
 
 def _load():
@@ -154,8 +154,8 @@ def run_trading_cycle():
         
         candidates.sort(key=lambda x: -x[0])
         slots = MAX_POSITIONS - num_positions
-        # Buy top candidates, max 2 new positions per cycle
-        to_buy = candidates[:min(slots, 2)]
+        # Buy top candidates, max 5 new positions per cycle
+        to_buy = candidates[:min(slots, 5)]
         
         for score, m in to_buy:
             side, price = _decide_side(m)
