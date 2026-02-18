@@ -1,5 +1,5 @@
 {
-  "balance": 9025.0,
+  "balance": 8145.06,
   "positions": {
     "984441_no": {
       "market_id": "984441",
@@ -17,6 +17,24 @@
       "shares": 1862.75,
       "avg_price": 0.255,
       "bought_at": "2026-02-18T10:31:42.493487",
+      "score": 72
+    },
+    "1198423_yes": {
+      "market_id": "1198423",
+      "question": "US strikes Iran by February 28, 2026?",
+      "side": "yes",
+      "shares": 1271.13,
+      "avg_price": 0.355,
+      "bought_at": "2026-02-18T11:00:03.826402",
+      "score": 72
+    },
+    "1337783_yes": {
+      "market_id": "1337783",
+      "question": "Will AC Milan win on 2026-02-18?",
+      "side": "yes",
+      "shares": 1032.99,
+      "avg_price": 0.415,
+      "bought_at": "2026-02-18T11:00:03.826427",
       "score": 72
     }
   },
@@ -40,9 +58,29 @@
       "shares": 1862.75,
       "score": 72,
       "time": "2026-02-18T10:31:42.493493"
+    },
+    {
+      "action": "buy",
+      "question": "US strikes Iran by February 28, 2026?",
+      "side": "yes",
+      "price": 0.355,
+      "amount": 451.25,
+      "shares": 1271.13,
+      "score": 72,
+      "time": "2026-02-18T11:00:03.826410"
+    },
+    {
+      "action": "buy",
+      "question": "Will AC Milan win on 2026-02-18?",
+      "side": "yes",
+      "price": 0.415,
+      "amount": 428.69,
+      "shares": 1032.99,
+      "score": 72,
+      "time": "2026-02-18T11:00:03.826431"
     }
   ],
   "daily_snapshots": [],
   "created": "2026-02-18T10:31:42.254192",
-  "last_trade": "2026-02-18T10:31:42.493500"
+  "last_trade": "2026-02-18T11:00:03.826436"
 }

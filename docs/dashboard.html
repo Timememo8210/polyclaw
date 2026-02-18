@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>🐾 PolyClaw Dashboard</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0d1117;color:#c9d1d9;min-height:100vh}
+.header{background:linear-gradient(135deg,#161b22,#1a1f2e);border-bottom:1px solid #30363d;padding:24px 32px;text-align:center}
+.header h1{font-size:28px;margin-bottom:8px}.header h1 span{color:#58a6ff}
+.header .updated{color:#484f58;font-size:13px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;max-width:1000px;margin:24px auto;padding:0 24px}
+.card{background:#161b22;border:1px solid #30363d;border-radius:12px;padding:20px;text-align:center}
+.card .label{font-size:12px;color:#8b949e;margin-bottom:4px}
+.card .val{font-size:24px;font-weight:700}
+.pos{color:#3fb950}.neg{color:#f85149}
+.section{max-width:1000px;margin:24px auto;padding:0 24px}
+.section h2{font-size:18px;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #21262d}
+table{width:100%;border-collapse:collapse;background:#161b22;border:1px solid #30363d;border-radius:12px;overflow:hidden;font-size:13px}
+thead{background:#21262d}
+th{padding:10px 12px;text-align:left;color:#8b949e;font-weight:600;font-size:12px}
+td{padding:10px 12px;border-top:1px solid #21262d}
+td.q{max-width:250px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+td.dim{color:#484f58;font-size:12px}
+.side{padding:2px 6px;border-radius:4px;font-size:10px;font-weight:700}
+.side.yes{background:#238636;color:#fff}.side.no{background:#da3633;color:#fff}
+.action{padding:2px 6px;border-radius:4px;font-size:10px;font-weight:700}
+.action.buy{background:#1f6feb;color:#fff}.action.sell{background:#6e40c9;color:#fff}
+.empty{padding:30px;text-align:center;color:#484f58}
+.chart-box{background:#161b22;border:1px solid #30363d;border-radius:12px;padding:20px;margin-bottom:16px}
+canvas{width:100%!important;max-height:200px}
+.footer{text-align:center;padding:32px;color:#484f58;font-size:12px}
+.footer a{color:#58a6ff;text-decoration:none}
+@media(max-width:600px){
+  .cards{grid-template-columns:repeat(2,1fr);gap:10px}
+  table{font-size:11px}td.q{max-width:120px}
+  th,td{padding:6px 8px}
+}
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>🐾 <span>PolyClaw</span> 自动交易仪表盘</h1>
+  <div class="updated">最后更新: 2026-02-18 11:08 PST</div>
+</div>
+
+<div class="cards">
+  <div class="card"><div class="label">💰 账户总值</div><div class="val">$9,992.33</div></div>
+  <div class="card"><div class="label">📊 总盈亏</div><div class="val neg">$-7.67<br><span style="font-size:14px">(-0.08%)</span></div></div>
+  <div class="card"><div class="label">💵 可用余额</div><div class="val">$8,145.06</div></div>
+  <div class="card"><div class="label">📋 持仓数</div><div class="val">4/10</div></div>
+  <div class="card"><div class="label">🔄 总交易次数</div><div class="val">4</div></div>
+  <div class="card"><div class="label">🎯 胜率</div><div class="val">0%<br><span style="font-size:12px;color:#8b949e">0胜 0负</span></div></div>
+</div>
+
+<div class="section">
+  <h2>📈 资产曲线</h2>
+  <div class="chart-box">
+    <canvas id="chart"></canvas>
+    <div class="empty">数据积累中，明天开始显示曲线</div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>📋 当前持仓</h2>
+  <table>
+            <thead><tr><th></th><th>市场</th><th>股数</th><th>成本</th><th>现价</th><th>市值</th><th>盈亏</th></tr></thead>
+            <tbody><tr>
+                <td><span class="side no">NO</span></td>
+                <td class="q">US strikes Iran by March 31, 2026?</td>
+                <td>1299</td>
+                <td>38¢</td>
+                <td>40¢</td>
+                <td>$512.99</td>
+                <td class="pos">+$12.99 (+2.6%)</td>
+            </tr><tr>
+                <td><span class="side yes">YES</span></td>
+                <td class="q">Khamenei out as Supreme Leader of Iran by March 31?</td>
+                <td>1863</td>
+                <td>26¢</td>
+                <td>26¢</td>
+                <td>$475.00</td>
+                <td class="pos">+$0.00 (+0.0%)</td>
+            </tr><tr>
+                <td><span class="side yes">YES</span></td>
+                <td class="q">US strikes Iran by February 28, 2026?</td>
+                <td>1271</td>
+                <td>36¢</td>
+                <td>36¢</td>
+                <td>$451.25</td>
+                <td class="pos">+$0.00 (+0.0%)</td>
+            </tr><tr>
+                <td><span class="side yes">YES</span></td>
+                <td class="q">Will AC Milan win on 2026-02-18?</td>
+                <td>1033</td>
+                <td>42¢</td>
+                <td>40¢</td>
+                <td>$408.03</td>
+                <td class="neg">$-20.66 (-4.8%)</td>
+            </tr></tbody>
+        </table>
+</div>
+
+<div class="section">
+  <h2>📜 交易记录（最近20笔）</h2>
+  <table><thead><tr><th></th><th></th><th>市场</th><th>详情</th><th>金额</th><th>原因</th><th>时间</th></tr></thead><tbody><tr>
+                <td><span class="action buy">买入</span></td>
+                <td><span class="side yes">YES</span></td>
+                <td class="q">Will AC Milan win on 2026-02-18?</td>
+                <td>1033股 @ 42¢</td>
+                <td>-$429</td>
+                <td class="dim"></td>
+                <td class="dim">02/18 11:00</td>
+            </tr><tr>
+                <td><span class="action buy">买入</span></td>
+                <td><span class="side yes">YES</span></td>
+                <td class="q">US strikes Iran by February 28, 2026?</td>
+                <td>1271股 @ 36¢</td>
+                <td>-$451</td>
+                <td class="dim"></td>
+                <td class="dim">02/18 11:00</td>
+            </tr><tr>
+                <td><span class="action buy">买入</span></td>
+                <td><span class="side yes">YES</span></td>
+                <td class="q">Khamenei out as Supreme Leader of Iran by March 31</td>
+                <td>1863股 @ 26¢</td>
+                <td>-$475</td>
+                <td class="dim"></td>
+                <td class="dim">02/18 10:31</td>
+            </tr><tr>
+                <td><span class="action buy">买入</span></td>
+                <td><span class="side no">NO</span></td>
+                <td class="q">US strikes Iran by March 31, 2026?</td>
+                <td>1299股 @ 38¢</td>
+                <td>-$500</td>
+                <td class="dim"></td>
+                <td class="dim">02/18 10:31</td>
+            </tr></tbody></table>
+</div>
+
+<div class="footer">
+  🐾 PolyClaw — 模拟交易，不涉及真实资金 | <a href="https://github.com/Timememo8210/polyclaw">GitHub</a><br>
+  由 Sky ☁️ 全自动运营 | 启动资金 $10,000
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
+<script>
+const labels = [];
+const values = [];
+if (labels.length >= 2) {
+  new Chart(document.getElementById('chart'), {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [{
+        label: '账户总值 ($)',
+        data: values,
+        borderColor: '#58a6ff',
+        backgroundColor: 'rgba(88,166,255,0.1)',
+        fill: true,
+        tension: 0.3,
+        pointRadius: 3,
+      }, {
+        label: '起始资金',
+        data: values.map(() => 10000),
+        borderColor: '#30363d',
+        borderDash: [5,5],
+        pointRadius: 0,
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { labels: { color: '#8b949e' } } },
+      scales: {
+        x: { ticks: { color: '#484f58' }, grid: { color: '#21262d' } },
+        y: { ticks: { color: '#484f58' }, grid: { color: '#21262d' } }
+      }
+    }
+  });
+}
+</script>
+</body>
+</html>
