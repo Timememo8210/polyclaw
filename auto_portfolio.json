@@ -1,0 +1,48 @@
+{
+  "balance": 9025.0,
+  "positions": {
+    "984441_no": {
+      "market_id": "984441",
+      "question": "US strikes Iran by March 31, 2026?",
+      "side": "no",
+      "shares": 1298.7,
+      "avg_price": 0.385,
+      "bought_at": "2026-02-18T10:31:42.493446",
+      "score": 72
+    },
+    "916732_yes": {
+      "market_id": "916732",
+      "question": "Khamenei out as Supreme Leader of Iran by March 31?",
+      "side": "yes",
+      "shares": 1862.75,
+      "avg_price": 0.255,
+      "bought_at": "2026-02-18T10:31:42.493487",
+      "score": 72
+    }
+  },
+  "history": [
+    {
+      "action": "buy",
+      "question": "US strikes Iran by March 31, 2026?",
+      "side": "no",
+      "price": 0.385,
+      "amount": 500.0,
+      "shares": 1298.7,
+      "score": 72,
+      "time": "2026-02-18T10:31:42.493461"
+    },
+    {
+      "action": "buy",
+      "question": "Khamenei out as Supreme Leader of Iran by March 31?",
+      "side": "yes",
+      "price": 0.255,
+      "amount": 475.0,
+      "shares": 1862.75,
+      "score": 72,
+      "time": "2026-02-18T10:31:42.493493"
+    }
+  ],
+  "daily_snapshots": [],
+  "created": "2026-02-18T10:31:42.254192",
+  "last_trade": "2026-02-18T10:31:42.493500"
+}
