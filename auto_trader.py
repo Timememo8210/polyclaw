@@ -42,56 +42,146 @@ def _save(data):
     with open(PORTFOLIO_FILE, "w") as f:
         json.dump(data, f, indent=2, ensure_ascii=False)
 
+
+# Keywords for market categorization
+SPORTS_KEYWORDS = ["win on 202", "win the 202", "FC ", "CF ", "AFC ", "NHL", "NBA", "NFL", "MLB",
+                   "UEFA", "Champions League", "Premier League", "La Liga", "Serie A", "Ligue 1",
+                   "Stanley Cup", "Super Bowl", "World Series", "match", "game on"]
+POLITICS_KEYWORDS = ["Trump", "Biden", "president", "election", "Congress", "Senate", "governor",
+                     "nominee", "nomination", "vote", "party", "Democrat", "Republican"]
+GEOPOLITICS_KEYWORDS = ["Iran", "Russia", "Ukraine", "China", "war", "strike", "invasion",
+                        "sanctions", "NATO", "military", "ceasefire", "peace", "nuclear"]
+ECONOMY_KEYWORDS = ["Fed", "interest rate", "inflation", "GDP", "recession", "Bitcoin", "BTC",
+                    "crypto", "tariff", "trade war", "S&P", "stock", "market crash"]
+
+def _categorize_market(question):
+    """Categorize market by type."""
+    q = question.lower()
+    # Check if it's a same-day/short-term sports bet
+    for kw in SPORTS_KEYWORDS:
+        if kw.lower() in q:
+            return "sports"
+    for kw in GEOPOLITICS_KEYWORDS:
+        if kw.lower() in q:
+            return "geopolitics"
+    for kw in POLITICS_KEYWORDS:
+        if kw.lower() in q:
+            return "politics"
+    for kw in ECONOMY_KEYWORDS:
+        if kw.lower() in q:
+            return "economy"
+    return "other"
+
+def _is_short_term_sports(m):
+    """Detect same-day or next-day sports events — avoid these."""
+    q = m.get("question", "").lower()
+    # Pattern: "win on 2026-02-XX" — specific date sports bets
+    import re
+    if re.search(r'win on 202\d-\d{2}-\d{2}', q):
+        return True
+    if any(kw.lower() in q for kw in ["win on", "game on", "match on"]):
+        return True
+    return False
+
 def _score_market(m):
-    """Score a market for trading opportunity. Higher = better."""
+    """Score a market for trading opportunity. Higher = better.
+    
+    Strategy v2: Focus on information-analyzable markets.
+    - AVOID: short-term sports (no edge, pure gambling)
+    - PREFER: geopolitics, politics, economy (news-analyzable)
+    - OK: long-term sports (season winners, tournaments)
+    """
     price = m["outcome_yes"]
+    question = m.get("question", "")
+    category = _categorize_market(question)
     score = 0
     
-    # Prefer mid-range probabilities (sweet spot: 25-75%)
-    if 0.25 <= price <= 0.75:
-        score += 30
-    elif 0.15 <= price <= 0.85:
-        score += 15
+    # === HARD FILTERS ===
+    # Skip short-term sports — this is where we lost $405
+    if _is_short_term_sports(m):
+        return 0
+    
+    # Skip extreme odds — no value
+    if price < 0.10 or price > 0.90:
+        return 0
+    
+    # === CATEGORY SCORING ===
+    # We can analyze news for these categories
+    if category == "geopolitics":
+        score += 35  # Best edge: we can read news
+    elif category == "economy":
+        score += 30  # Fed decisions, crypto — analyzable
+    elif category == "politics":
+        score += 25  # Elections, nominations — lots of coverage
+    elif category == "sports":
+        score += 10  # Only long-term (season/tournament) gets here
     else:
-        return 0  # skip extreme odds
+        score += 15
     
-    # Volume matters — more volume = more reliable price
+    # === PRICE RANGE ===
+    # Sweet spot: markets where the outcome is genuinely uncertain
+    if 0.30 <= price <= 0.70:
+        score += 20  # Maximum uncertainty = maximum opportunity
+    elif 0.20 <= price <= 0.80:
+        score += 10
+    
+    # === VOLUME & LIQUIDITY ===
     vol = m["volume_24h"]
-    if vol > 500000: score += 25
-    elif vol > 200000: score += 20
-    elif vol > 100000: score += 15
-    elif vol > 50000: score += 10
-    else: return 0
+    if vol > 500000: score += 20
+    elif vol > 200000: score += 15
+    elif vol > 100000: score += 10
+    elif vol > 50000: score += 5
+    else: return 0  # Too thin, skip
     
-    # Liquidity bonus
     liq = m.get("liquidity", 0)
     if liq > 100000: score += 10
     elif liq > 50000: score += 5
     
-    # Slight randomness for diversification
-    score += random.randint(0, 10)
+    # Small randomness for diversification (reduced from before)
+    score += random.randint(0, 5)
     
     return score
 
 def _decide_side(m):
-    """Decide YES or NO based on price analysis."""
+    """Decide YES or NO based on category + price analysis.
+    
+    Strategy v2: category-aware decisions
+    - Geopolitics: markets tend to overprice dramatic events (wars, strikes)
+      → lean NO on "will X attack Y" unless price is very low
+    - Economy: Fed tends to be cautious → lean toward status quo
+    - Politics: incumbents/favorites tend to be slightly overpriced → look for value in underdogs
+    """
     yes_price = m["outcome_yes"]
     no_price = m["outcome_no"]
+    category = _categorize_market(m.get("question", ""))
+    q = m.get("question", "").lower()
     
-    # Simple contrarian logic:
-    # If YES is cheap (<40%), market might be underpricing it → buy YES
-    # If YES is expensive (>60%), the NO side is cheap → buy NO
-    # In the middle, pick the cheaper side
-    if yes_price < 0.40:
+    # Geopolitics: people overestimate dramatic events
+    if category == "geopolitics":
+        # "Will X strike/attack Y" — markets often overprice fear
+        if any(w in q for w in ["strike", "attack", "invade", "war"]):
+            if yes_price > 0.35:
+                return "no", no_price  # Fear is overpriced
+            else:
+                return "yes", yes_price  # But if it's cheap, might be real
+        # "Ceasefire/peace" — markets underestimate slow diplomacy
+        if any(w in q for w in ["ceasefire", "peace", "deal"]):
+            if yes_price < 0.50:
+                return "yes", yes_price
+    
+    # Economy: status quo bias works
+    if category == "economy":
+        if any(w in q for w in ["decrease", "increase", "crash", "recession"]):
+            if yes_price > 0.50:
+                return "no", no_price  # Dramatic changes less likely
+            else:
+                return "yes", yes_price
+    
+    # Default: buy the cheaper side (better risk/reward)
+    if yes_price <= no_price:
         return "yes", yes_price
-    elif yes_price > 0.60:
-        return "no", no_price
     else:
-        # Buy whichever is cheaper
-        if yes_price <= no_price:
-            return "yes", yes_price
-        else:
-            return "no", no_price
+        return "no", no_price
 
 def run_trading_cycle():
     """Main trading cycle — called by cron."""
