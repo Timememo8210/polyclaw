@@ -43,9 +43,11 @@ def generate():
     if history:
         hist_rows = ""
         for h in reversed(history[-20:]):
+            if h["action"] == "settle":
+                continue  # skip settle entries in display
             action_cls = "buy" if h["action"] == "buy" else "sell"
             action_txt = "买入" if h["action"] == "buy" else "卖出"
-            side_cls = "yes" if h["side"] == "yes" else "no"
+            side_cls = "yes" if h.get("side") == "yes" else "no"
             t = datetime.fromisoformat(h["time"]).strftime("%m/%d %H:%M")
             if h["action"] == "buy":
                 detail = f"-${h['amount']:.0f}"

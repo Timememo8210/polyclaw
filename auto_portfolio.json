@@ -1,5 +1,5 @@
 {
-  "balance": 6994.45,
+  "balance": 6106.756599999999,
   "positions": {
     "984441_no": {
       "market_id": "984441",
@@ -28,24 +28,6 @@
       "bought_at": "2026-02-18T11:00:03.826402",
       "score": 72
     },
-    "1337783_yes": {
-      "market_id": "1337783",
-      "question": "Will AC Milan win on 2026-02-18?",
-      "side": "yes",
-      "shares": 1032.99,
-      "avg_price": 0.415,
-      "bought_at": "2026-02-18T11:00:03.826427",
-      "score": 72
-    },
-    "1341285_no": {
-      "market_id": "1341285",
-      "question": "Will FC Internazionale Milano win on 2026-02-18?",
-      "side": "no",
-      "shares": 537.03,
-      "avg_price": 0.455,
-      "bought_at": "2026-02-18T11:36:56.576988",
-      "score": 70
-    },
     "984442_no": {
       "market_id": "984442",
       "question": "US strikes Iran by June 30, 2026?",
@@ -73,14 +55,55 @@
       "bought_at": "2026-02-18T11:36:56.577025",
       "score": 46
     },
-    "1337788_no": {
-      "market_id": "1337788",
-      "question": "Will Arsenal FC win on 2026-02-18?",
+    "fed_march_no_change_yes": {
+      "market_id": "fed_march_no_change",
+      "question": "Fed holds rates in March 2026 FOMC meeting",
+      "side": "yes",
+      "shares": 537.63,
+      "avg_price": 0.93,
+      "bought_at": "2026-02-18T14:04:26.305789",
+      "score": 80,
+      "rationale": "通胀仍高+就业强劲，CME FedWatch 93%+ 不变，几乎确定收益"
+    },
+    "btc_no_150k_feb_no": {
+      "market_id": "btc_no_150k_feb",
+      "question": "Bitcoin reaches $150K in February 2026",
       "side": "no",
-      "shares": 1006.14,
-      "avg_price": 0.215,
-      "bought_at": "2026-02-18T11:36:56.577031",
-      "score": 46
+      "shares": 416.67,
+      "avg_price": 0.96,
+      "bought_at": "2026-02-18T14:04:26.305812",
+      "score": 80,
+      "rationale": "BTC ~$97K，10天内涨55%到$150K基本不可能"
+    },
+    "us_iran_strike_feb_no": {
+      "market_id": "us_iran_strike_feb",
+      "question": "US strikes Iran by February 28, 2026",
+      "side": "no",
+      "shares": 769.23,
+      "avg_price": 0.78,
+      "bought_at": "2026-02-18T14:04:26.305821",
+      "score": 80,
+      "rationale": "仅剩10天，当前外交渠道活跃，短期军事行动可能性低。已持有YES仓位需要对冲"
+    },
+    "fed_cut_june_yes": {
+      "market_id": "fed_cut_june",
+      "question": "Fed cuts rates by June 2026",
+      "side": "yes",
+      "shares": 1111.11,
+      "avg_price": 0.45,
+      "bought_at": "2026-02-18T14:04:26.305827",
+      "score": 80,
+      "rationale": "经济放缓信号增多，CME预期6月前降息概率约50%，市场可能低估"
+    },
+    "trump_approval_above_45_no": {
+      "market_id": "trump_approval_above_45",
+      "question": "Trump approval rating above 45% on March 1",
+      "side": "no",
+      "shares": 727.27,
+      "avg_price": 0.55,
+      "bought_at": "2026-02-18T14:04:26.305832",
+      "score": 80,
+      "rationale": "当前支持率约42-43%，短期大幅上升需要重大政策利好，概率偏低"
     }
   },
   "history": [
@@ -173,9 +196,80 @@
       "shares": 1006.14,
       "score": 46,
       "time": "2026-02-18T11:36:56.577033"
+    },
+    {
+      "action": "settle",
+      "time": "2026-02-18T14:04:07.287041",
+      "question": "Will AC Milan win on 2026-02-18?",
+      "result": "LOSS",
+      "pnl": -428.69084999999995
+    },
+    {
+      "action": "settle",
+      "time": "2026-02-18T14:04:07.287049",
+      "question": "Will FC Internazionale Milano win on 2026-02-18?",
+      "result": "WIN",
+      "pnl": 286.82772299999993
+    },
+    {
+      "action": "settle",
+      "time": "2026-02-18T14:04:07.287051",
+      "question": "Will Arsenal FC win on 2026-02-18?",
+      "result": "WIN",
+      "pnl": 774.023502
+    },
+    {
+      "action": "buy",
+      "question": "Fed holds rates in March 2026 FOMC meeting",
+      "side": "yes",
+      "price": 0.93,
+      "amount": 500,
+      "shares": 537.63,
+      "rationale": "通胀仍高+就业强劲，CME FedWatch 93%+ 不变，几乎确定收益",
+      "time": "2026-02-18T14:04:26.305798"
+    },
+    {
+      "action": "buy",
+      "question": "Bitcoin reaches $150K in February 2026",
+      "side": "no",
+      "price": 0.96,
+      "amount": 400,
+      "shares": 416.67,
+      "rationale": "BTC ~$97K，10天内涨55%到$150K基本不可能",
+      "time": "2026-02-18T14:04:26.305816"
+    },
+    {
+      "action": "buy",
+      "question": "US strikes Iran by February 28, 2026",
+      "side": "no",
+      "price": 0.78,
+      "amount": 600,
+      "shares": 769.23,
+      "rationale": "仅剩10天，当前外交渠道活跃，短期军事行动可能性低。已持有YES仓位需要对冲",
+      "time": "2026-02-18T14:04:26.305823"
+    },
+    {
+      "action": "buy",
+      "question": "Fed cuts rates by June 2026",
+      "side": "yes",
+      "price": 0.45,
+      "amount": 500,
+      "shares": 1111.11,
+      "rationale": "经济放缓信号增多，CME预期6月前降息概率约50%，市场可能低估",
+      "time": "2026-02-18T14:04:26.305829"
+    },
+    {
+      "action": "buy",
+      "question": "Trump approval rating above 45% on March 1",
+      "side": "no",
+      "price": 0.55,
+      "amount": 400,
+      "shares": 727.27,
+      "rationale": "当前支持率约42-43%，短期大幅上升需要重大政策利好，概率偏低",
+      "time": "2026-02-18T14:04:26.305834"
     }
   ],
   "daily_snapshots": [],
   "created": "2026-02-18T10:31:42.254192",
-  "last_trade": "2026-02-18T11:36:56.577036"
+  "last_trade": "2026-02-18T14:04:26.305837"
 }
