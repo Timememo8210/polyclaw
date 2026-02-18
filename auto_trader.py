@@ -21,8 +21,8 @@ MAX_POSITIONS = 25
 MAX_POSITION_PCT = 0.03  # 3% of balance per trade
 MIN_PRICE = 0.15
 MAX_PRICE = 0.85
-TAKE_PROFIT = 0.15   # +15%
-STOP_LOSS = -0.15     # -15%
+TAKE_PROFIT = 0.08   # +8% 快速止盈
+STOP_LOSS = -0.12     # -12% 止损稍宽，给波动空间
 MIN_VOLUME_24H = 50000  # minimum 24h volume
 
 def _load():
@@ -208,7 +208,9 @@ def run_trading_cycle():
         pnl_pct = (current_price - pos["avg_price"]) / pos["avg_price"] if pos["avg_price"] > 0 else 0
         
         reason = None
-        if pnl_pct >= TAKE_PROFIT:
+        if current_price <= 0.02 or current_price >= 0.98:
+            reason = f"已结算 ({current_price*100:.0f}¢)"
+        elif pnl_pct >= TAKE_PROFIT:
             reason = f"止盈 +{pnl_pct*100:.0f}%"
         elif pnl_pct <= STOP_LOSS:
             reason = f"止损 {pnl_pct*100:.0f}%"

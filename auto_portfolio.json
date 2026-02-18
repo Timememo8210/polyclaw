@@ -1,42 +1,6 @@
 {
-  "balance": 6106.756599999999,
+  "balance": 6737.485469999998,
   "positions": {
-    "984441_no": {
-      "market_id": "984441",
-      "question": "US strikes Iran by March 31, 2026?",
-      "side": "no",
-      "shares": 1298.7,
-      "avg_price": 0.385,
-      "bought_at": "2026-02-18T10:31:42.493446",
-      "score": 72
-    },
-    "916732_yes": {
-      "market_id": "916732",
-      "question": "Khamenei out as Supreme Leader of Iran by March 31?",
-      "side": "yes",
-      "shares": 1862.75,
-      "avg_price": 0.255,
-      "bought_at": "2026-02-18T10:31:42.493487",
-      "score": 72
-    },
-    "1198423_yes": {
-      "market_id": "1198423",
-      "question": "US strikes Iran by February 28, 2026?",
-      "side": "yes",
-      "shares": 1271.13,
-      "avg_price": 0.355,
-      "bought_at": "2026-02-18T11:00:03.826402",
-      "score": 72
-    },
-    "984442_no": {
-      "market_id": "984442",
-      "question": "US strikes Iran by June 30, 2026?",
-      "side": "no",
-      "shares": 707.52,
-      "avg_price": 0.335,
-      "bought_at": "2026-02-18T11:36:56.577008",
-      "score": 60
-    },
     "553828_yes": {
       "market_id": "553828",
       "question": "Will the Colorado Avalanche win the 2026 NHL Stanley Cup?",
@@ -45,15 +9,6 @@
       "avg_price": 0.2275,
       "bought_at": "2026-02-18T11:36:56.577017",
       "score": 55
-    },
-    "566737_yes": {
-      "market_id": "566737",
-      "question": "Will Lens win the 2025–26 French Ligue 1?",
-      "side": "yes",
-      "shares": 1476.89,
-      "avg_price": 0.151,
-      "bought_at": "2026-02-18T11:36:56.577025",
-      "score": 46
     },
     "fed_march_no_change_yes": {
       "market_id": "fed_march_no_change",
@@ -104,6 +59,51 @@
       "bought_at": "2026-02-18T14:04:26.305832",
       "score": 80,
       "rationale": "当前支持率约42-43%，短期大幅上升需要重大政策利好，概率偏低"
+    },
+    "984441_no": {
+      "market_id": "984441",
+      "question": "US strikes Iran by March 31, 2026?",
+      "side": "no",
+      "shares": 485.32,
+      "avg_price": 0.485,
+      "bought_at": "2026-02-18T15:57:37.308739",
+      "score": 87
+    },
+    "1367195_no": {
+      "market_id": "1367195",
+      "question": "US strikes Iran by March 15, 2026?",
+      "side": "no",
+      "shares": 374.28,
+      "avg_price": 0.61,
+      "bought_at": "2026-02-18T15:57:37.308758",
+      "score": 84
+    },
+    "984442_no": {
+      "market_id": "984442",
+      "question": "US strikes Iran by June 30, 2026?",
+      "side": "no",
+      "shares": 575.22,
+      "avg_price": 0.385,
+      "bought_at": "2026-02-18T15:57:37.308771",
+      "score": 79
+    },
+    "916732_yes": {
+      "market_id": "916732",
+      "question": "Khamenei out as Supreme Leader of Iran by March 31?",
+      "side": "yes",
+      "shares": 1047.9,
+      "avg_price": 0.205,
+      "bought_at": "2026-02-18T15:57:37.308788",
+      "score": 76
+    },
+    "1198423_yes": {
+      "market_id": "1198423",
+      "question": "US strikes Iran by February 28, 2026?",
+      "side": "yes",
+      "shares": 969.21,
+      "avg_price": 0.215,
+      "bought_at": "2026-02-18T15:57:37.308799",
+      "score": 75
     }
   },
   "history": [
@@ -267,9 +267,114 @@
       "shares": 727.27,
       "rationale": "当前支持率约42-43%，短期大幅上升需要重大政策利好，概率偏低",
       "time": "2026-02-18T14:04:26.305834"
+    },
+    {
+      "action": "sell",
+      "question": "US strikes Iran by March 31, 2026?",
+      "side": "no",
+      "price": 0.485,
+      "shares": 1298.7,
+      "proceeds": 629.87,
+      "profit": 129.87,
+      "reason": "止盈 +26%",
+      "time": "2026-02-18T15:57:37.308277"
+    },
+    {
+      "action": "sell",
+      "question": "Khamenei out as Supreme Leader of Iran by March 31?",
+      "side": "yes",
+      "price": 0.205,
+      "shares": 1862.75,
+      "proceeds": 381.86,
+      "profit": -93.14,
+      "reason": "止损 -20%",
+      "time": "2026-02-18T15:57:37.308293"
+    },
+    {
+      "action": "sell",
+      "question": "US strikes Iran by February 28, 2026?",
+      "side": "yes",
+      "price": 0.215,
+      "shares": 1271.13,
+      "proceeds": 273.29,
+      "profit": -177.96,
+      "reason": "止损 -39%",
+      "time": "2026-02-18T15:57:37.308302"
+    },
+    {
+      "action": "sell",
+      "question": "US strikes Iran by June 30, 2026?",
+      "side": "no",
+      "price": 0.385,
+      "shares": 707.52,
+      "proceeds": 272.4,
+      "profit": 35.38,
+      "reason": "止盈 +15%",
+      "time": "2026-02-18T15:57:37.308308"
+    },
+    {
+      "action": "sell",
+      "question": "Will Lens win the 2025–26 French Ligue 1?",
+      "side": "yes",
+      "price": 0.123,
+      "shares": 1476.89,
+      "proceeds": 181.66,
+      "profit": -41.35,
+      "reason": "止损 -19%",
+      "time": "2026-02-18T15:57:37.308315"
+    },
+    {
+      "action": "buy",
+      "question": "US strikes Iran by March 31, 2026?",
+      "side": "no",
+      "price": 0.485,
+      "amount": 235.38,
+      "shares": 485.32,
+      "score": 87,
+      "time": "2026-02-18T15:57:37.308743"
+    },
+    {
+      "action": "buy",
+      "question": "US strikes Iran by March 15, 2026?",
+      "side": "no",
+      "price": 0.61,
+      "amount": 228.31,
+      "shares": 374.28,
+      "score": 84,
+      "time": "2026-02-18T15:57:37.308761"
+    },
+    {
+      "action": "buy",
+      "question": "US strikes Iran by June 30, 2026?",
+      "side": "no",
+      "price": 0.385,
+      "amount": 221.46,
+      "shares": 575.22,
+      "score": 79,
+      "time": "2026-02-18T15:57:37.308774"
+    },
+    {
+      "action": "buy",
+      "question": "Khamenei out as Supreme Leader of Iran by March 31?",
+      "side": "yes",
+      "price": 0.205,
+      "amount": 214.82,
+      "shares": 1047.9,
+      "score": 76,
+      "time": "2026-02-18T15:57:37.308790"
+    },
+    {
+      "action": "buy",
+      "question": "US strikes Iran by February 28, 2026?",
+      "side": "yes",
+      "price": 0.215,
+      "amount": 208.38,
+      "shares": 969.21,
+      "score": 75,
+      "time": "2026-02-18T15:57:37.308801"
     }
   ],
   "daily_snapshots": [],
   "created": "2026-02-18T10:31:42.254192",
-  "last_trade": "2026-02-18T14:04:26.305837"
+  "last_trade": "2026-02-18T15:57:37.308804"
 }
