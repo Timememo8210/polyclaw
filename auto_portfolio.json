@@ -1,5 +1,5 @@
 {
-  "balance": 6737.485469999998,
+  "balance": 5702.605469999998,
   "positions": {
     "553828_yes": {
       "market_id": "553828",
@@ -104,6 +104,24 @@
       "avg_price": 0.215,
       "bought_at": "2026-02-18T15:57:37.308799",
       "score": 75
+    },
+    "1386656_yes": {
+      "market_id": "1386656",
+      "question": "US strikes Iran by February 22, 2026?",
+      "side": "yes",
+      "shares": 4686.96,
+      "avg_price": 0.115,
+      "bought_at": "2026-02-18T16:07:00.521504",
+      "score": 60
+    },
+    "566737_yes": {
+      "market_id": "566737",
+      "question": "Will Lens win the 2025–26 French Ligue 1?",
+      "side": "yes",
+      "shares": 3728.42,
+      "avg_price": 0.133,
+      "bought_at": "2026-02-18T16:07:00.521534",
+      "score": 31
     }
   },
   "history": [
@@ -372,9 +390,29 @@
       "shares": 969.21,
       "score": 75,
       "time": "2026-02-18T15:57:37.308801"
+    },
+    {
+      "action": "buy",
+      "question": "US strikes Iran by February 22, 2026?",
+      "side": "yes",
+      "price": 0.115,
+      "amount": 539.0,
+      "shares": 4686.96,
+      "score": 60,
+      "time": "2026-02-18T16:07:00.521517"
+    },
+    {
+      "action": "buy",
+      "question": "Will Lens win the 2025–26 French Ligue 1?",
+      "side": "yes",
+      "price": 0.133,
+      "amount": 495.88,
+      "shares": 3728.42,
+      "score": 31,
+      "time": "2026-02-18T16:07:00.521538"
     }
   ],
   "daily_snapshots": [],
   "created": "2026-02-18T10:31:42.254192",
-  "last_trade": "2026-02-18T15:57:37.308804"
+  "last_trade": "2026-02-18T16:07:00.521542"
 }

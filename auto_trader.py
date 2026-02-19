@@ -18,7 +18,7 @@ from market_data import get_trending_markets
 PORTFOLIO_FILE = os.path.join(os.path.dirname(__file__), "auto_portfolio.json")
 STARTING_BALANCE = 10000.0
 MAX_POSITIONS = 25
-MAX_POSITION_PCT = 0.03  # 3% of balance per trade
+MAX_POSITION_PCT = 0.08  # 8% of balance per trade
 MIN_PRICE = 0.15
 MAX_PRICE = 0.85
 TAKE_PROFIT = 0.08   # +8% 快速止盈
@@ -253,8 +253,8 @@ def run_trading_cycle():
             if price <= 0 or price >= 1:
                 continue
             
-            amount = min(data["balance"] * MAX_POSITION_PCT, data["balance"] * 0.1)
-            amount = round(min(amount, data["balance"] - 100), 2)  # keep $100 reserve
+            amount = round(data["balance"] * MAX_POSITION_PCT, 2)
+            amount = round(min(amount, data["balance"] - 500), 2)  # keep $500 reserve
             if amount < 20:
                 continue
             
