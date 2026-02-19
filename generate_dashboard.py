@@ -132,7 +132,7 @@ canvas{{width:100%!important;max-height:200px}}
   <div class="card"><div class="label">💰 账户总值</div><div class="val">${report['total_value']:,.2f}</div></div>
   <div class="card"><div class="label">📊 总盈亏</div><div class="val {pnl_class}">{pnl_sign}${report['total_pnl']:.2f}<br><span style="font-size:14px">({pnl_sign}{report['total_pnl_pct']}%)</span></div></div>
   <div class="card"><div class="label">💵 可用余额</div><div class="val">${report['balance']:,.2f}</div></div>
-  <div class="card"><div class="label">📋 持仓数</div><div class="val">{report['position_count']}/10</div></div>
+  <div class="card"><div class="label">📋 持仓数</div><div class="val">{report['position_count']}/25</div></div>
   <div class="card"><div class="label">🔄 总交易次数</div><div class="val">{report['total_trades']}</div></div>
   <div class="card"><div class="label">🎯 胜率</div><div class="val">{wr}%<br><span style="font-size:12px;color:#8b949e">{wins}胜 {losses}负</span></div></div>
 </div>
