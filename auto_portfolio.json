@@ -1,5 +1,5 @@
 {
-  "balance": 3890.3050499999977,
+  "balance": 5415.834449999998,
   "positions": {
     "553828_yes": {
       "market_id": "553828",
@@ -29,16 +29,6 @@
       "bought_at": "2026-02-18T14:04:26.305812",
       "score": 80,
       "rationale": "BTC ~$97K，10天内涨55%到$150K基本不可能"
-    },
-    "us_iran_strike_feb_no": {
-      "market_id": "us_iran_strike_feb",
-      "question": "US strikes Iran by February 28, 2026",
-      "side": "no",
-      "shares": 769.23,
-      "avg_price": 0.78,
-      "bought_at": "2026-02-18T14:04:26.305821",
-      "score": 80,
-      "rationale": "仅剩10天，当前外交渠道活跃，短期军事行动可能性低。已持有YES仓位需要对冲"
     },
     "fed_cut_june_yes": {
       "market_id": "fed_cut_june",
@@ -77,15 +67,6 @@
       "avg_price": 0.495,
       "bought_at": "2026-02-18T18:01:07.629266",
       "score": 62
-    },
-    "1372830_no": {
-      "market_id": "1372830",
-      "question": "Rockets vs. Hornets",
-      "side": "no",
-      "shares": 2468.08,
-      "avg_price": 0.385,
-      "bought_at": "2026-02-19T06:01:39.307006",
-      "score": 63
     },
     "703257_yes": {
       "market_id": "703257",
@@ -582,6 +563,28 @@
       "shares": 4607.52,
       "score": 32,
       "time": "2026-02-19T06:01:39.307032"
+    },
+    {
+      "action": "sell",
+      "question": "US strikes Iran by February 28, 2026",
+      "side": "no",
+      "price": 0.78,
+      "shares": 769.23,
+      "proceeds": 600.0,
+      "profit": 0.0,
+      "reason": "违反规则：同主题正反矛盾仓位",
+      "time": "2026-02-19T09:01:00.000000"
+    },
+    {
+      "action": "sell",
+      "question": "Rockets vs. Hornets",
+      "side": "no",
+      "price": 0.375,
+      "shares": 2468.08,
+      "proceeds": 925.53,
+      "profit": -24.68,
+      "reason": "违反规则：短期体育赛事=纯赌博",
+      "time": "2026-02-19T09:01:00.000000"
     }
   ],
   "daily_snapshots": [
