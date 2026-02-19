@@ -1,5 +1,5 @@
 {
-  "balance": 2950.0874199999985,
+  "balance": 3890.3050499999977,
   "positions": {
     "553828_yes": {
       "market_id": "553828",
@@ -60,51 +60,6 @@
       "score": 80,
       "rationale": "当前支持率约42-43%，短期大幅上升需要重大政策利好，概率偏低"
     },
-    "984441_no": {
-      "market_id": "984441",
-      "question": "US strikes Iran by March 31, 2026?",
-      "side": "no",
-      "shares": 485.32,
-      "avg_price": 0.485,
-      "bought_at": "2026-02-18T15:57:37.308739",
-      "score": 87
-    },
-    "1367195_no": {
-      "market_id": "1367195",
-      "question": "US strikes Iran by March 15, 2026?",
-      "side": "no",
-      "shares": 374.28,
-      "avg_price": 0.61,
-      "bought_at": "2026-02-18T15:57:37.308758",
-      "score": 84
-    },
-    "984442_no": {
-      "market_id": "984442",
-      "question": "US strikes Iran by June 30, 2026?",
-      "side": "no",
-      "shares": 575.22,
-      "avg_price": 0.385,
-      "bought_at": "2026-02-18T15:57:37.308771",
-      "score": 79
-    },
-    "916732_yes": {
-      "market_id": "916732",
-      "question": "Khamenei out as Supreme Leader of Iran by March 31?",
-      "side": "yes",
-      "shares": 1047.9,
-      "avg_price": 0.205,
-      "bought_at": "2026-02-18T15:57:37.308788",
-      "score": 76
-    },
-    "566737_yes": {
-      "market_id": "566737",
-      "question": "Will Lens win the 2025–26 French Ligue 1?",
-      "side": "yes",
-      "shares": 3728.42,
-      "avg_price": 0.133,
-      "bought_at": "2026-02-18T16:07:00.521534",
-      "score": 31
-    },
     "1198423_yes": {
       "market_id": "1198423",
       "question": "US strikes Iran by February 28, 2026?",
@@ -113,15 +68,6 @@
       "avg_price": 0.275,
       "bought_at": "2026-02-18T18:01:07.629238",
       "score": 77
-    },
-    "1198479_yes": {
-      "market_id": "1198479",
-      "question": "Will US or Israel strike Iran by February 28, 2026?",
-      "side": "yes",
-      "shares": 2923.17,
-      "avg_price": 0.29,
-      "bought_at": "2026-02-18T18:01:07.629252",
-      "score": 65
     },
     "897776_yes": {
       "market_id": "897776",
@@ -132,23 +78,32 @@
       "bought_at": "2026-02-18T18:01:07.629266",
       "score": 62
     },
-    "1386656_yes": {
-      "market_id": "1386656",
-      "question": "US strikes Iran by February 22, 2026?",
-      "side": "yes",
-      "shares": 4223.93,
-      "avg_price": 0.145,
-      "bought_at": "2026-02-18T18:01:07.629274",
-      "score": 58
+    "1372830_no": {
+      "market_id": "1372830",
+      "question": "Rockets vs. Hornets",
+      "side": "no",
+      "shares": 2468.08,
+      "avg_price": 0.385,
+      "bought_at": "2026-02-19T06:01:39.307006",
+      "score": 63
     },
-    "1345641_yes": {
-      "market_id": "1345641",
-      "question": "Will Bitcoin reach $75,000 in February?",
+    "703257_yes": {
+      "market_id": "703257",
+      "question": "Will the US confirm that aliens exist before 2027?",
       "side": "yes",
-      "shares": 2814.05,
-      "avg_price": 0.185,
-      "bought_at": "2026-02-18T18:01:07.629285",
-      "score": 51
+      "shares": 7023.22,
+      "avg_price": 0.115,
+      "bought_at": "2026-02-19T06:01:39.307022",
+      "score": 43
+    },
+    "566737_yes": {
+      "market_id": "566737",
+      "question": "Will Lens win the 2025–26 French Ligue 1?",
+      "side": "yes",
+      "shares": 4607.52,
+      "avg_price": 0.149,
+      "bought_at": "2026-02-19T06:01:39.307031",
+      "score": 32
     }
   },
   "history": [
@@ -509,6 +464,124 @@
       "shares": 2814.05,
       "score": 51,
       "time": "2026-02-18T18:01:07.629287"
+    },
+    {
+      "action": "sell",
+      "question": "US strikes Iran by March 31, 2026?",
+      "side": "no",
+      "price": 0.395,
+      "shares": 485.32,
+      "proceeds": 191.7,
+      "profit": -43.68,
+      "reason": "止损 -19%",
+      "time": "2026-02-19T06:01:39.306701"
+    },
+    {
+      "action": "sell",
+      "question": "US strikes Iran by March 15, 2026?",
+      "side": "no",
+      "price": 0.52,
+      "shares": 374.28,
+      "proceeds": 194.63,
+      "profit": -33.69,
+      "reason": "止损 -15%",
+      "time": "2026-02-19T06:01:39.306713"
+    },
+    {
+      "action": "sell",
+      "question": "US strikes Iran by June 30, 2026?",
+      "side": "no",
+      "price": 0.315,
+      "shares": 575.22,
+      "proceeds": 181.19,
+      "profit": -40.27,
+      "reason": "止损 -18%",
+      "time": "2026-02-19T06:01:39.306719"
+    },
+    {
+      "action": "sell",
+      "question": "Khamenei out as Supreme Leader of Iran by March 31?",
+      "side": "yes",
+      "price": 0.225,
+      "shares": 1047.9,
+      "proceeds": 235.78,
+      "profit": 20.96,
+      "reason": "止盈 +10%",
+      "time": "2026-02-19T06:01:39.306723"
+    },
+    {
+      "action": "sell",
+      "question": "Will Lens win the 2025–26 French Ligue 1?",
+      "side": "yes",
+      "price": 0.149,
+      "shares": 3728.42,
+      "proceeds": 555.53,
+      "profit": 59.65,
+      "reason": "止盈 +12%",
+      "time": "2026-02-19T06:01:39.306728"
+    },
+    {
+      "action": "sell",
+      "question": "Will US or Israel strike Iran by February 28, 2026?",
+      "side": "yes",
+      "price": 0.315,
+      "shares": 2923.17,
+      "proceeds": 920.8,
+      "profit": 73.08,
+      "reason": "止盈 +9%",
+      "time": "2026-02-19T06:01:39.306732"
+    },
+    {
+      "action": "sell",
+      "question": "US strikes Iran by February 22, 2026?",
+      "side": "yes",
+      "price": 0.165,
+      "shares": 4223.93,
+      "proceeds": 696.95,
+      "profit": 84.48,
+      "reason": "止盈 +14%",
+      "time": "2026-02-19T06:01:39.306736"
+    },
+    {
+      "action": "sell",
+      "question": "Will Bitcoin reach $75,000 in February?",
+      "side": "yes",
+      "price": 0.145,
+      "shares": 2814.05,
+      "proceeds": 408.04,
+      "profit": -112.56,
+      "reason": "止损 -22%",
+      "time": "2026-02-19T06:01:39.306739"
+    },
+    {
+      "action": "buy",
+      "question": "Rockets vs. Hornets",
+      "side": "no",
+      "price": 0.385,
+      "amount": 950.21,
+      "shares": 2468.08,
+      "score": 63,
+      "time": "2026-02-19T06:01:39.307009"
+    },
+    {
+      "action": "buy",
+      "question": "Will the US confirm that aliens exist before 2027?",
+      "side": "yes",
+      "price": 0.115,
+      "amount": 807.67,
+      "shares": 7023.22,
+      "score": 43,
+      "time": "2026-02-19T06:01:39.307025"
+    },
+    {
+      "action": "buy",
+      "question": "Will Lens win the 2025–26 French Ligue 1?",
+      "side": "yes",
+      "price": 0.149,
+      "amount": 686.52,
+      "shares": 4607.52,
+      "score": 32,
+      "time": "2026-02-19T06:01:39.307032"
     }
   ],
   "daily_snapshots": [
@@ -520,5 +593,5 @@
     }
   ],
   "created": "2026-02-18T10:31:42.254192",
-  "last_trade": "2026-02-18T18:01:07.629288"
+  "last_trade": "2026-02-19T06:01:39.307035"
 }
