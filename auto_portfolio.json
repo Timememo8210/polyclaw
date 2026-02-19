@@ -1,5 +1,5 @@
 {
-  "balance": 5702.605469999998,
+  "balance": 2950.0874199999985,
   "positions": {
     "553828_yes": {
       "market_id": "553828",
@@ -96,24 +96,6 @@
       "bought_at": "2026-02-18T15:57:37.308788",
       "score": 76
     },
-    "1198423_yes": {
-      "market_id": "1198423",
-      "question": "US strikes Iran by February 28, 2026?",
-      "side": "yes",
-      "shares": 969.21,
-      "avg_price": 0.215,
-      "bought_at": "2026-02-18T15:57:37.308799",
-      "score": 75
-    },
-    "1386656_yes": {
-      "market_id": "1386656",
-      "question": "US strikes Iran by February 22, 2026?",
-      "side": "yes",
-      "shares": 4686.96,
-      "avg_price": 0.115,
-      "bought_at": "2026-02-18T16:07:00.521504",
-      "score": 60
-    },
     "566737_yes": {
       "market_id": "566737",
       "question": "Will Lens win the 2025–26 French Ligue 1?",
@@ -122,6 +104,51 @@
       "avg_price": 0.133,
       "bought_at": "2026-02-18T16:07:00.521534",
       "score": 31
+    },
+    "1198423_yes": {
+      "market_id": "1198423",
+      "question": "US strikes Iran by February 28, 2026?",
+      "side": "yes",
+      "shares": 3626.58,
+      "avg_price": 0.275,
+      "bought_at": "2026-02-18T18:01:07.629238",
+      "score": 77
+    },
+    "1198479_yes": {
+      "market_id": "1198479",
+      "question": "Will US or Israel strike Iran by February 28, 2026?",
+      "side": "yes",
+      "shares": 2923.17,
+      "avg_price": 0.29,
+      "bought_at": "2026-02-18T18:01:07.629252",
+      "score": 65
+    },
+    "897776_yes": {
+      "market_id": "897776",
+      "question": "Will Canada win the Men's Ice Hockey gold medal at the 2026 Winter Olympics?",
+      "side": "yes",
+      "shares": 1455.68,
+      "avg_price": 0.495,
+      "bought_at": "2026-02-18T18:01:07.629266",
+      "score": 62
+    },
+    "1386656_yes": {
+      "market_id": "1386656",
+      "question": "US strikes Iran by February 22, 2026?",
+      "side": "yes",
+      "shares": 4223.93,
+      "avg_price": 0.145,
+      "bought_at": "2026-02-18T18:01:07.629274",
+      "score": 58
+    },
+    "1345641_yes": {
+      "market_id": "1345641",
+      "question": "Will Bitcoin reach $75,000 in February?",
+      "side": "yes",
+      "shares": 2814.05,
+      "avg_price": 0.185,
+      "bought_at": "2026-02-18T18:01:07.629285",
+      "score": 51
     }
   },
   "history": [
@@ -410,9 +437,88 @@
       "shares": 3728.42,
       "score": 31,
       "time": "2026-02-18T16:07:00.521538"
+    },
+    {
+      "action": "sell",
+      "question": "US strikes Iran by February 28, 2026?",
+      "side": "yes",
+      "price": 0.275,
+      "shares": 969.21,
+      "proceeds": 266.53,
+      "profit": 58.15,
+      "reason": "止盈 +28%",
+      "time": "2026-02-18T18:01:07.628955"
+    },
+    {
+      "action": "sell",
+      "question": "US strikes Iran by February 22, 2026?",
+      "side": "yes",
+      "price": 0.145,
+      "shares": 4686.96,
+      "proceeds": 679.61,
+      "profit": 140.61,
+      "reason": "止盈 +26%",
+      "time": "2026-02-18T18:01:07.628965"
+    },
+    {
+      "action": "buy",
+      "question": "US strikes Iran by February 28, 2026?",
+      "side": "yes",
+      "price": 0.275,
+      "amount": 997.31,
+      "shares": 3626.58,
+      "score": 77,
+      "time": "2026-02-18T18:01:07.629241"
+    },
+    {
+      "action": "buy",
+      "question": "Will US or Israel strike Iran by February 28, 2026?",
+      "side": "yes",
+      "price": 0.29,
+      "amount": 847.72,
+      "shares": 2923.17,
+      "score": 65,
+      "time": "2026-02-18T18:01:07.629254"
+    },
+    {
+      "action": "buy",
+      "question": "Will Canada win the Men's Ice Hockey gold medal at the 2026 Winter Olympics?",
+      "side": "yes",
+      "price": 0.495,
+      "amount": 720.56,
+      "shares": 1455.68,
+      "score": 62,
+      "time": "2026-02-18T18:01:07.629268"
+    },
+    {
+      "action": "buy",
+      "question": "US strikes Iran by February 22, 2026?",
+      "side": "yes",
+      "price": 0.145,
+      "amount": 612.47,
+      "shares": 4223.93,
+      "score": 58,
+      "time": "2026-02-18T18:01:07.629275"
+    },
+    {
+      "action": "buy",
+      "question": "Will Bitcoin reach $75,000 in February?",
+      "side": "yes",
+      "price": 0.185,
+      "amount": 520.6,
+      "shares": 2814.05,
+      "score": 51,
+      "time": "2026-02-18T18:01:07.629287"
     }
   ],
-  "daily_snapshots": [],
+  "daily_snapshots": [
+    {
+      "date": "2026-02-18",
+      "total_value": 10677.24,
+      "pnl": 677.24,
+      "positions": 16
+    }
+  ],
   "created": "2026-02-18T10:31:42.254192",
-  "last_trade": "2026-02-18T16:07:00.521542"
+  "last_trade": "2026-02-18T18:01:07.629288"
 }

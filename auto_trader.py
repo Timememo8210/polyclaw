@@ -233,11 +233,28 @@ def run_trading_cycle():
     # 3. Look for new opportunities
     num_positions = len(data["positions"])
     held_market_ids = {pos["market_id"] for pos in data["positions"].values()}
+    # Track held market topics to prevent conflicting bets (YES+NO on same topic)
+    held_topics = set()
+    for pos in data["positions"].values():
+        q = pos["question"].lower()
+        # Normalize: strip date specifics to catch "Iran strike by Feb 22" vs "Feb 28"
+        for keyword in ["iran", "bitcoin", "fed", "trump", "canada", "israel"]:
+            if keyword in q:
+                held_topics.add(keyword)
     
     if num_positions < MAX_POSITIONS:
         candidates = []
         for m in markets:
             if m["id"] in held_market_ids:
+                continue
+            # Prevent conflicting positions on same topic
+            q_lower = m.get("question", "").lower()
+            topic_conflict = False
+            for keyword in ["iran", "bitcoin", "fed", "trump", "canada", "israel"]:
+                if keyword in q_lower and keyword in held_topics:
+                    topic_conflict = True
+                    break
+            if topic_conflict:
                 continue
             score = _score_market(m)
             if score > 0:
