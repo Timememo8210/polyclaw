@@ -1,5 +1,5 @@
 {
-  "balance": 4414.702319999998,
+  "balance": 1871.9923199999976,
   "positions": {
     "553828_yes": {
       "market_id": "553828",
@@ -102,6 +102,87 @@
       "shares": 17038.46,
       "avg_price": 0.0026,
       "bought_at": "2026-02-19T17:33:51.581614",
+      "score": 75,
+      "longshot": true,
+      "limit_order": true,
+      "original_market_price": 0.0035
+    },
+    "566188_yes": {
+      "market_id": "566188",
+      "question": "Will Manchester City win the 2025–26 English Premier League?",
+      "side": "yes",
+      "shares": 1676.48,
+      "avg_price": 0.395,
+      "bought_at": "2026-02-19T18:01:17.628131",
+      "score": 64
+    },
+    "1395128_yes": {
+      "market_id": "1395128",
+      "question": "Spread: 76ers (-1.5)",
+      "side": "yes",
+      "shares": 1608.2,
+      "avg_price": 0.35,
+      "bought_at": "2026-02-19T18:01:17.628155",
+      "score": 55
+    },
+    "1395126_no": {
+      "market_id": "1395126",
+      "question": "Spread: Rockets (-4.5)",
+      "side": "no",
+      "shares": 1275.84,
+      "avg_price": 0.375,
+      "bought_at": "2026-02-19T18:01:17.628169",
+      "score": 51
+    },
+    "1277190_yes": {
+      "market_id": "1277190",
+      "question": "Will Google have the best AI model at the end of February 2026?",
+      "side": "yes",
+      "shares": 2804.69,
+      "avg_price": 0.145,
+      "bought_at": "2026-02-19T18:01:17.628189",
+      "score": 48
+    },
+    "1277193_no": {
+      "market_id": "1277193",
+      "question": "Will Anthropic have the best AI model at the end of February 2026?",
+      "side": "no",
+      "shares": 1904.57,
+      "avg_price": 0.1815,
+      "bought_at": "2026-02-19T18:01:17.628210",
+      "score": 37
+    },
+    "ls_1367169_yes": {
+      "market_id": "1367169",
+      "question": "US strikes Iran by February 19, 2026?",
+      "side": "yes",
+      "shares": 11300.0,
+      "avg_price": 0.0026,
+      "bought_at": "2026-02-19T18:01:17.628479",
+      "score": 80,
+      "longshot": true,
+      "limit_order": true,
+      "original_market_price": 0.0035
+    },
+    "ls_1273927_yes": {
+      "market_id": "1273927",
+      "question": "Will the US next strike Iran on February 19, 2026 (ET)?",
+      "side": "yes",
+      "shares": 11130.77,
+      "avg_price": 0.0026,
+      "bought_at": "2026-02-19T18:01:17.628490",
+      "score": 80,
+      "longshot": true,
+      "limit_order": true,
+      "original_market_price": 0.0035
+    },
+    "ls_572471_yes": {
+      "market_id": "572471",
+      "question": "Will Trump nominate Christopher Waller as the next Fed chair?",
+      "side": "yes",
+      "shares": 10965.38,
+      "avg_price": 0.0026,
+      "bought_at": "2026-02-19T18:01:17.628499",
       "score": 75,
       "longshot": true,
       "limit_order": true,
@@ -758,6 +839,92 @@
       "profit": 1.32,
       "reason": "到期清仓：Feb 19已过，即将归零",
       "time": "2026-02-19T18:00:49.024523"
+    },
+    {
+      "action": "buy",
+      "question": "Will Manchester City win the 2025–26 English Premier League?",
+      "side": "yes",
+      "price": 0.395,
+      "amount": 662.21,
+      "shares": 1676.48,
+      "score": 64,
+      "time": "2026-02-19T18:01:17.628138"
+    },
+    {
+      "action": "buy",
+      "question": "Spread: 76ers (-1.5)",
+      "side": "yes",
+      "price": 0.35,
+      "amount": 562.87,
+      "shares": 1608.2,
+      "score": 55,
+      "time": "2026-02-19T18:01:17.628158"
+    },
+    {
+      "action": "buy",
+      "question": "Spread: Rockets (-4.5)",
+      "side": "no",
+      "price": 0.375,
+      "amount": 478.44,
+      "shares": 1275.84,
+      "score": 51,
+      "time": "2026-02-19T18:01:17.628171"
+    },
+    {
+      "action": "buy",
+      "question": "Will Google have the best AI model at the end of February 2026?",
+      "side": "yes",
+      "price": 0.145,
+      "amount": 406.68,
+      "shares": 2804.69,
+      "score": 48,
+      "time": "2026-02-19T18:01:17.628191"
+    },
+    {
+      "action": "buy",
+      "question": "Will Anthropic have the best AI model at the end of February 2026?",
+      "side": "no",
+      "price": 0.1815,
+      "amount": 345.68,
+      "shares": 1904.57,
+      "score": 37,
+      "time": "2026-02-19T18:01:17.628212"
+    },
+    {
+      "action": "buy",
+      "question": "US strikes Iran by February 19, 2026?",
+      "side": "yes",
+      "price": 0.0026,
+      "amount": 29.38,
+      "shares": 11300.0,
+      "score": 80,
+      "longshot": true,
+      "note": "🎰低概率猎手 | 市价0.4¢ → 挂单0.3¢",
+      "time": "2026-02-19T18:01:17.628483"
+    },
+    {
+      "action": "buy",
+      "question": "Will the US next strike Iran on February 19, 2026 (ET)?",
+      "side": "yes",
+      "price": 0.0026,
+      "amount": 28.94,
+      "shares": 11130.77,
+      "score": 80,
+      "longshot": true,
+      "note": "🎰低概率猎手 | 市价0.4¢ → 挂单0.3¢",
+      "time": "2026-02-19T18:01:17.628494"
+    },
+    {
+      "action": "buy",
+      "question": "Will Trump nominate Christopher Waller as the next Fed chair?",
+      "side": "yes",
+      "price": 0.0026,
+      "amount": 28.51,
+      "shares": 10965.38,
+      "score": 75,
+      "longshot": true,
+      "note": "🎰低概率猎手 | 市价0.4¢ → 挂单0.3¢",
+      "time": "2026-02-19T18:01:17.628501"
     }
   ],
   "daily_snapshots": [
@@ -766,8 +933,14 @@
       "total_value": 10677.24,
       "pnl": 677.24,
       "positions": 16
+    },
+    {
+      "date": "2026-02-19",
+      "total_value": 10485.95,
+      "pnl": 485.95,
+      "positions": 19
     }
   ],
   "created": "2026-02-18T10:31:42.254192",
-  "last_trade": "2026-02-19T17:33:51.581620"
+  "last_trade": "2026-02-19T18:01:17.628505"
 }
