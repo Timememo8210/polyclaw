@@ -25,6 +25,17 @@ TAKE_PROFIT = 0.08   # +8% 快速止盈
 STOP_LOSS = -0.12     # -12% 止损稍宽，给波动空间
 MIN_VOLUME_24H = 50000  # minimum 24h volume
 
+# === 低概率猎手策略参数 (inspired by 奔奔Ben: $16.8→$2500) ===
+LONGSHOT_ENABLED = True
+LONGSHOT_MIN_PRICE = 0.001   # 0.1¢
+LONGSHOT_MAX_PRICE = 0.05    # 5¢
+LONGSHOT_MAX_PER_TRADE_PCT = 0.015  # 单笔最多1.5%资金
+LONGSHOT_MAX_PER_TRADE_CAP = 100    # 单笔上限$100
+LONGSHOT_MAX_POSITIONS = 10          # 最多10个低概率仓位
+LONGSHOT_LIMIT_DISCOUNT = 0.25       # 挂单压低25%（如市价5¢挂3.75¢）
+LONGSHOT_TAKE_PROFIT = 1.0           # +100% 翻倍止盈
+LONGSHOT_STOP_LOSS = -0.50           # -50% 止损（低概率标的波动大）
+
 def _load():
     if os.path.exists(PORTFOLIO_FILE):
         with open(PORTFOLIO_FILE) as f:
@@ -46,7 +57,12 @@ def _save(data):
 # Keywords for market categorization
 SPORTS_KEYWORDS = ["win on 202", "win the 202", "FC ", "CF ", "AFC ", "NHL", "NBA", "NFL", "MLB",
                    "UEFA", "Champions League", "Premier League", "La Liga", "Serie A", "Ligue 1",
-                   "Stanley Cup", "Super Bowl", "World Series", "match", "game on"]
+                   "Stanley Cup", "Super Bowl", "World Series", "match", "game on",
+                   " vs. ", " vs ", "Celtics", "Warriors", "Lakers", "Rockets", "Hornets",
+                   "Knicks", "Nets", "Heat", "Bucks", "76ers", "Nuggets", "Suns",
+                   "Thunder", "Cavaliers", "Pacers", "Pistons", "Hawks", "Bulls",
+                   "Mavericks", "Spurs", "Clippers", "Kings", "Grizzlies", "Pelicans",
+                   "Timberwolves", "Trail Blazers", "Jazz", "Wizards", "Raptors", "Magic"]
 POLITICS_KEYWORDS = ["Trump", "Biden", "president", "election", "Congress", "Senate", "governor",
                      "nominee", "nomination", "vote", "party", "Democrat", "Republican"]
 GEOPOLITICS_KEYWORDS = ["Iran", "Russia", "Ukraine", "China", "war", "strike", "invasion",
@@ -80,6 +96,9 @@ def _is_short_term_sports(m):
     if re.search(r'win on 202\d-\d{2}-\d{2}', q):
         return True
     if any(kw.lower() in q for kw in ["win on", "game on", "match on"]):
+        return True
+    # "X vs Y" / "X vs. Y" — single-game matchups
+    if " vs " in q or " vs. " in q:
         return True
     return False
 
@@ -141,6 +160,56 @@ def _score_market(m):
     score += random.randint(0, 5)
     
     return score
+
+def _score_longshot(m):
+    """Score a low-probability market (0.1¢-5¢ YES).
+    
+    奔奔Ben策略: 聚焦冷门、突发、收尾期市场
+    - 快到期的冷门市场 → 竞争小，有意外正向空间
+    - 突发类事件 → 被忽略的黑天鹅
+    - 热度退去的收尾市场 → 便宜但还有可能
+    """
+    yes_price = m["outcome_yes"]
+    
+    # 只看极低概率标的
+    if yes_price < LONGSHOT_MIN_PRICE or yes_price > LONGSHOT_MAX_PRICE:
+        return 0
+    
+    # 短期体育赛事仍然禁止
+    if _is_short_term_sports(m):
+        return 0
+    
+    score = 30  # base score for being in range
+    
+    category = _categorize_market(m.get("question", ""))
+    
+    # 突发类事件加分（地缘、政治更容易出黑天鹅）
+    if category == "geopolitics":
+        score += 20
+    elif category == "politics":
+        score += 15
+    elif category == "economy":
+        score += 10
+    elif category == "sports":
+        score += 5  # 长期体育可以，但优先级低
+    
+    # 有交易量说明还有人关注
+    vol = m["volume_24h"]
+    if vol > 100000: score += 15
+    elif vol > 50000: score += 10
+    elif vol > 10000: score += 5
+    else: score -= 10  # 太冷清可能有问题
+    
+    # 价格越低，潜在回报越高
+    if yes_price <= 0.01:
+        score += 15  # 100x potential
+    elif yes_price <= 0.03:
+        score += 10  # 30x+ potential
+    elif yes_price <= 0.05:
+        score += 5   # 20x potential
+    
+    return score
+
 
 def _decide_side(m):
     """Decide YES or NO based on category + price analysis.
@@ -207,12 +276,17 @@ def run_trading_cycle():
         current_price = m["outcome_yes"] if pos["side"] == "yes" else m["outcome_no"]
         pnl_pct = (current_price - pos["avg_price"]) / pos["avg_price"] if pos["avg_price"] > 0 else 0
         
+        # 低概率仓位用不同的止盈止损
+        is_longshot = pos.get("longshot", False) or pos["avg_price"] <= LONGSHOT_MAX_PRICE
+        tp = LONGSHOT_TAKE_PROFIT if is_longshot else TAKE_PROFIT
+        sl = LONGSHOT_STOP_LOSS if is_longshot else STOP_LOSS
+        
         reason = None
-        if current_price <= 0.02 or current_price >= 0.98:
-            reason = f"已结算 ({current_price*100:.0f}¢)"
-        elif pnl_pct >= TAKE_PROFIT:
-            reason = f"止盈 +{pnl_pct*100:.0f}%"
-        elif pnl_pct <= STOP_LOSS:
+        if current_price <= 0.002 or current_price >= 0.98:
+            reason = f"已结算 ({current_price*100:.1f}¢)"
+        elif pnl_pct >= tp:
+            reason = f"止盈 +{pnl_pct*100:.0f}%{'🎰' if is_longshot else ''}"
+        elif pnl_pct <= sl:
             reason = f"止损 {pnl_pct*100:.0f}%"
         
         if reason:
@@ -289,6 +363,58 @@ def run_trading_cycle():
                 "score": score, "time": datetime.now().isoformat()
             })
             actions.append(f"📥 买入 | {m['question'][:40]} | {side.upper()} @ {price*100:.0f}¢ | ${amount:.0f}")
+    
+    # 4. 低概率猎手 — 扫描0.1-5¢的黑天鹅标的
+    if LONGSHOT_ENABLED:
+        longshot_count = sum(1 for pos in data["positions"].values() 
+                           if pos.get("longshot") or pos["avg_price"] <= LONGSHOT_MAX_PRICE)
+        
+        if longshot_count < LONGSHOT_MAX_POSITIONS:
+            longshot_candidates = []
+            for m in markets:
+                if m["id"] in {pos["market_id"] for pos in data["positions"].values()}:
+                    continue
+                ls_score = _score_longshot(m)
+                if ls_score > 0:
+                    longshot_candidates.append((ls_score, m))
+            
+            longshot_candidates.sort(key=lambda x: -x[0])
+            ls_slots = LONGSHOT_MAX_POSITIONS - longshot_count
+            
+            for ls_score, m in longshot_candidates[:min(ls_slots, 3)]:  # max 3 per cycle
+                yes_price = m["outcome_yes"]
+                # 限价挂单：压低25%买入（模拟限价单效果）
+                limit_price = round(yes_price * (1 - LONGSHOT_LIMIT_DISCOUNT), 4)
+                limit_price = max(limit_price, 0.001)  # 最低0.1¢
+                
+                # 小额下注
+                amount = min(
+                    data["balance"] * LONGSHOT_MAX_PER_TRADE_PCT,
+                    LONGSHOT_MAX_PER_TRADE_CAP,
+                    data["balance"] - 200
+                )
+                amount = round(amount, 2)
+                if amount < 5:
+                    continue
+                
+                shares = amount / limit_price
+                data["balance"] -= amount
+                key = f"ls_{m['id']}_yes"
+                data["positions"][key] = {
+                    "market_id": m["id"], "question": m["question"], "side": "yes",
+                    "shares": round(shares, 2), "avg_price": limit_price,
+                    "bought_at": datetime.now().isoformat(), "score": ls_score,
+                    "longshot": True, "limit_order": True,
+                    "original_market_price": yes_price
+                }
+                data["history"].append({
+                    "action": "buy", "question": m["question"], "side": "yes",
+                    "price": limit_price, "amount": amount, "shares": round(shares, 2),
+                    "score": ls_score, "longshot": True,
+                    "note": f"🎰低概率猎手 | 市价{yes_price*100:.1f}¢ → 挂单{limit_price*100:.1f}¢",
+                    "time": datetime.now().isoformat()
+                })
+                actions.append(f"🎰 低概率 | {m['question'][:40]} | YES @ {limit_price*100:.1f}¢ (市价{yes_price*100:.1f}¢) | ${amount:.0f}")
     
     data["last_trade"] = datetime.now().isoformat()
     _save(data)
