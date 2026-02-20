@@ -1,5 +1,5 @@
 {
-  "balance": 1871.9923199999976,
+  "balance": 3434.8105549999977,
   "positions": {
     "553828_yes": {
       "market_id": "553828",
@@ -58,15 +58,6 @@
       "avg_price": 0.495,
       "bought_at": "2026-02-18T18:01:07.629266",
       "score": 62
-    },
-    "703257_yes": {
-      "market_id": "703257",
-      "question": "Will the US confirm that aliens exist before 2027?",
-      "side": "yes",
-      "shares": 7023.22,
-      "avg_price": 0.115,
-      "bought_at": "2026-02-19T06:01:39.307022",
-      "score": 43
     },
     "1367195_no": {
       "market_id": "1367195",
@@ -134,15 +125,6 @@
       "bought_at": "2026-02-19T18:01:17.628169",
       "score": 51
     },
-    "1277190_yes": {
-      "market_id": "1277190",
-      "question": "Will Google have the best AI model at the end of February 2026?",
-      "side": "yes",
-      "shares": 2804.69,
-      "avg_price": 0.145,
-      "bought_at": "2026-02-19T18:01:17.628189",
-      "score": 48
-    },
     "1277193_no": {
       "market_id": "1277193",
       "question": "Will Anthropic have the best AI model at the end of February 2026?",
@@ -151,30 +133,6 @@
       "avg_price": 0.1815,
       "bought_at": "2026-02-19T18:01:17.628210",
       "score": 37
-    },
-    "ls_1367169_yes": {
-      "market_id": "1367169",
-      "question": "US strikes Iran by February 19, 2026?",
-      "side": "yes",
-      "shares": 11300.0,
-      "avg_price": 0.0026,
-      "bought_at": "2026-02-19T18:01:17.628479",
-      "score": 80,
-      "longshot": true,
-      "limit_order": true,
-      "original_market_price": 0.0035
-    },
-    "ls_1273927_yes": {
-      "market_id": "1273927",
-      "question": "Will the US next strike Iran on February 19, 2026 (ET)?",
-      "side": "yes",
-      "shares": 11130.77,
-      "avg_price": 0.0026,
-      "bought_at": "2026-02-19T18:01:17.628490",
-      "score": 80,
-      "longshot": true,
-      "limit_order": true,
-      "original_market_price": 0.0035
     },
     "ls_572471_yes": {
       "market_id": "572471",
@@ -925,6 +883,50 @@
       "longshot": true,
       "note": "🎰低概率猎手 | 市价0.4¢ → 挂单0.3¢",
       "time": "2026-02-19T18:01:17.628501"
+    },
+    {
+      "action": "sell",
+      "question": "Will the US confirm that aliens exist before 2027?",
+      "side": "yes",
+      "price": 0.175,
+      "shares": 7023.22,
+      "proceeds": 1229.06,
+      "profit": 421.39,
+      "reason": "止盈+52%：Trump公开UFO文件消息已反映，confirm aliens门槛极高",
+      "time": "2026-02-20T03:00:41.072293"
+    },
+    {
+      "action": "sell",
+      "question": "Will Google have the best AI model at the end of February 2026?",
+      "side": "yes",
+      "price": 0.115,
+      "shares": 2804.69,
+      "proceeds": 322.54,
+      "profit": -84.14,
+      "reason": "止损-21%：Gemini 3.1 Pro刷新基准但市场反跌，方向错误",
+      "time": "2026-02-20T03:00:41.072321"
+    },
+    {
+      "action": "sell",
+      "question": "US strikes Iran by February 19, 2026?",
+      "side": "yes",
+      "price": 0.0005,
+      "shares": 11300.0,
+      "proceeds": 5.65,
+      "profit": -23.73,
+      "reason": "到期归零",
+      "time": "2026-02-20T03:00:41.072330"
+    },
+    {
+      "action": "sell",
+      "question": "Will the US next strike Iran on February 19, 2026 (ET)?",
+      "side": "yes",
+      "price": 0.0005,
+      "shares": 11130.77,
+      "proceeds": 5.57,
+      "profit": -23.37,
+      "reason": "到期归零",
+      "time": "2026-02-20T03:00:41.072337"
     }
   ],
   "daily_snapshots": [
