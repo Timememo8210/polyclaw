@@ -1,5 +1,5 @@
 {
-  "balance": 3769.848709999997,
+  "balance": 4414.702319999998,
   "positions": {
     "553828_yes": {
       "market_id": "553828",
@@ -94,39 +94,6 @@
       "avg_price": 0.225,
       "bought_at": "2026-02-19T17:33:51.581332",
       "score": 79
-    },
-    "1198423_yes": {
-      "market_id": "1198423",
-      "question": "US strikes Iran by February 28, 2026?",
-      "side": "yes",
-      "shares": 2106.31,
-      "avg_price": 0.255,
-      "bought_at": "2026-02-19T17:33:51.581344",
-      "score": 76
-    },
-    "ls_1367169_yes": {
-      "market_id": "1367169",
-      "question": "US strikes Iran by February 19, 2026?",
-      "side": "yes",
-      "shares": 17557.69,
-      "avg_price": 0.0026,
-      "bought_at": "2026-02-19T17:33:51.581590",
-      "score": 80,
-      "longshot": true,
-      "limit_order": true,
-      "original_market_price": 0.0035
-    },
-    "ls_1273927_yes": {
-      "market_id": "1273927",
-      "question": "Will the US next strike Iran on February 19, 2026 (ET)?",
-      "side": "yes",
-      "shares": 13226.47,
-      "avg_price": 0.0034,
-      "bought_at": "2026-02-19T17:33:51.581604",
-      "score": 80,
-      "longshot": true,
-      "limit_order": true,
-      "original_market_price": 0.0045
     },
     "ls_572485_yes": {
       "market_id": "572485",
@@ -758,6 +725,39 @@
       "profit": 0,
       "reason": "违反规则：单场体育赛事",
       "time": "2026-02-19T15:30:00.000000"
+    },
+    {
+      "action": "sell",
+      "question": "US strikes Iran by February 28, 2026?",
+      "side": "yes",
+      "price": 0.255,
+      "shares": 2106.31,
+      "proceeds": 537.11,
+      "profit": 0.0,
+      "reason": "矛盾仓位：与Mar15/Mar31 NO方向冲突，统一做NO",
+      "time": "2026-02-19T18:00:49.024499"
+    },
+    {
+      "action": "sell",
+      "question": "US strikes Iran by February 19, 2026?",
+      "side": "yes",
+      "price": 0.0035,
+      "shares": 17557.69,
+      "proceeds": 61.45,
+      "profit": 15.8,
+      "reason": "到期清仓：Feb 19已过，即将归零",
+      "time": "2026-02-19T18:00:49.024515"
+    },
+    {
+      "action": "sell",
+      "question": "Will the US next strike Iran on February 19, 2026 (ET)?",
+      "side": "yes",
+      "price": 0.0035,
+      "shares": 13226.47,
+      "proceeds": 46.29,
+      "profit": 1.32,
+      "reason": "到期清仓：Feb 19已过，即将归零",
+      "time": "2026-02-19T18:00:49.024523"
     }
   ],
   "daily_snapshots": [
