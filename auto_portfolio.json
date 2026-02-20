@@ -1,5 +1,5 @@
 {
-  "balance": 3434.8105549999977,
+  "balance": 2846.7285549999974,
   "positions": {
     "553828_yes": {
       "market_id": "553828",
@@ -77,15 +77,6 @@
       "bought_at": "2026-02-19T17:33:51.581317",
       "score": 85
     },
-    "916732_yes": {
-      "market_id": "916732",
-      "question": "Khamenei out as Supreme Leader of Iran by March 31?",
-      "side": "yes",
-      "shares": 2808.4,
-      "avg_price": 0.225,
-      "bought_at": "2026-02-19T17:33:51.581332",
-      "score": 79
-    },
     "ls_572485_yes": {
       "market_id": "572485",
       "question": "Will Trump nominate Rick Rieder as the next Fed chair?",
@@ -145,6 +136,60 @@
       "longshot": true,
       "limit_order": true,
       "original_market_price": 0.0035
+    },
+    "703257_yes": {
+      "market_id": "703257",
+      "question": "Will the US confirm that aliens exist before 2027?",
+      "side": "yes",
+      "shares": 3533.89,
+      "avg_price": 0.175,
+      "bought_at": "2026-02-20T06:01:10.720871",
+      "score": 45
+    },
+    "566737_yes": {
+      "market_id": "566737",
+      "question": "Will Lens win the 2025–26 French Ligue 1?",
+      "side": "yes",
+      "shares": 4362.41,
+      "avg_price": 0.1205,
+      "bought_at": "2026-02-20T06:01:10.720885",
+      "score": 33
+    },
+    "ls_1320793_yes": {
+      "market_id": "1320793",
+      "question": "US strikes Iran by February 20, 2026?",
+      "side": "yes",
+      "shares": 3603.23,
+      "avg_price": 0.0124,
+      "bought_at": "2026-02-20T06:01:10.721160",
+      "score": 75,
+      "longshot": true,
+      "limit_order": true,
+      "original_market_price": 0.0165
+    },
+    "ls_572470_yes": {
+      "market_id": "572470",
+      "question": "Will Trump nominate Kevin Hassett as the next Fed chair?",
+      "side": "yes",
+      "shares": 23163.16,
+      "avg_price": 0.0019,
+      "bought_at": "2026-02-20T06:01:10.721170",
+      "score": 75,
+      "longshot": true,
+      "limit_order": true,
+      "original_market_price": 0.0025
+    },
+    "ls_1273928_yes": {
+      "market_id": "1273928",
+      "question": "Will the US next strike Iran on February 20, 2026 (ET)?",
+      "side": "yes",
+      "shares": 3309.16,
+      "avg_price": 0.0131,
+      "bought_at": "2026-02-20T06:01:10.721179",
+      "score": 75,
+      "longshot": true,
+      "limit_order": true,
+      "original_market_price": 0.0175
     }
   },
   "history": [
@@ -927,6 +972,73 @@
       "profit": -23.37,
       "reason": "到期归零",
       "time": "2026-02-20T03:00:41.072337"
+    },
+    {
+      "action": "sell",
+      "question": "Khamenei out as Supreme Leader of Iran by March 31?",
+      "side": "yes",
+      "price": 0.245,
+      "shares": 2808.4,
+      "proceeds": 688.06,
+      "profit": 56.17,
+      "reason": "止盈 +9%",
+      "time": "2026-02-20T06:01:10.720510"
+    },
+    {
+      "action": "buy",
+      "question": "Will the US confirm that aliens exist before 2027?",
+      "side": "yes",
+      "price": 0.175,
+      "amount": 618.43,
+      "shares": 3533.89,
+      "score": 45,
+      "time": "2026-02-20T06:01:10.720874"
+    },
+    {
+      "action": "buy",
+      "question": "Will Lens win the 2025–26 French Ligue 1?",
+      "side": "yes",
+      "price": 0.1205,
+      "amount": 525.67,
+      "shares": 4362.41,
+      "score": 33,
+      "time": "2026-02-20T06:01:10.720887"
+    },
+    {
+      "action": "buy",
+      "question": "US strikes Iran by February 20, 2026?",
+      "side": "yes",
+      "price": 0.0124,
+      "amount": 44.68,
+      "shares": 3603.23,
+      "score": 75,
+      "longshot": true,
+      "note": "🎰低概率猎手 | 市价1.7¢ → 挂单1.2¢",
+      "time": "2026-02-20T06:01:10.721164"
+    },
+    {
+      "action": "buy",
+      "question": "Will Trump nominate Kevin Hassett as the next Fed chair?",
+      "side": "yes",
+      "price": 0.0019,
+      "amount": 44.01,
+      "shares": 23163.16,
+      "score": 75,
+      "longshot": true,
+      "note": "🎰低概率猎手 | 市价0.2¢ → 挂单0.2¢",
+      "time": "2026-02-20T06:01:10.721174"
+    },
+    {
+      "action": "buy",
+      "question": "Will the US next strike Iran on February 20, 2026 (ET)?",
+      "side": "yes",
+      "price": 0.0131,
+      "amount": 43.35,
+      "shares": 3309.16,
+      "score": 75,
+      "longshot": true,
+      "note": "🎰低概率猎手 | 市价1.8¢ → 挂单1.3¢",
+      "time": "2026-02-20T06:01:10.721181"
     }
   ],
   "daily_snapshots": [
@@ -944,5 +1056,5 @@
     }
   ],
   "created": "2026-02-18T10:31:42.254192",
-  "last_trade": "2026-02-19T18:01:17.628505"
+  "last_trade": "2026-02-20T06:01:10.721184"
 }
