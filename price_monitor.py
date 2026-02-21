@@ -142,30 +142,42 @@ def should_trigger_trade(alert_data):
 
 
 def trigger_trading_cycle(alerts):
-    """Write alert file to signal that a trading cycle should run.
+    """Detect price movement → immediately execute trading cycle."""
+    from auto_trader import run_trading_cycle
     
-    The cron job or a watcher can check this file and invoke the trader.
-    """
     alert_summary = []
     for a in alerts:
         alert_summary.append(
             f"{a['direction']} {a['question'][:50]} | {a['old_price']*100:.0f}¢→{a['new_price']*100:.0f}¢ ({a['change_pct']:+.1f}%)"
         )
     
+    log.info(f"🚨 PRICE ALERT → AUTO TRADING: {len(alerts)} alerts")
+    for s in alert_summary:
+        log.info(f"  {s}")
+    
+    # 直接执行交易
+    result = None
+    try:
+        result = run_trading_cycle()
+        actions = result.get("actions", [])
+        log.info(f"✅ Trading cycle complete: {len(actions)} actions, balance=${result.get('balance', '?')}")
+        for act in actions:
+            log.info(f"  {act}")
+    except Exception as e:
+        log.error(f"❌ Trading cycle failed: {e}", exc_info=True)
+    
+    # 同时记录到文件供cron报告用
     trigger = {
         "triggered_at": datetime.now().isoformat(),
         "alerts": alerts,
         "summary": alert_summary,
-        "status": "pending",  # pending → processed
+        "trade_result": result if result else None,
+        "status": "executed",
     }
     
     trigger_file = os.path.join(os.path.dirname(__file__), "trigger_trade.json")
     with open(trigger_file, "w") as f:
         json.dump(trigger, f, indent=2, ensure_ascii=False)
-    
-    log.info(f"🚨 TRADE TRIGGERED: {len(alerts)} alerts")
-    for s in alert_summary:
-        log.info(f"  {s}")
     
     return trigger_file
 
