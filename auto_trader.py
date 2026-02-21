@@ -21,8 +21,8 @@ MAX_POSITIONS = 25
 MAX_POSITION_PCT = 0.15  # 15% of balance per trade — 有信息差就重仓
 MIN_PRICE = 0.15
 MAX_PRICE = 0.85
-TAKE_PROFIT = 0.08   # +8% 快速止盈
-STOP_LOSS = -0.12     # -12% 止损稍宽，给波动空间
+TAKE_PROFIT = 0.15   # +15% 让利润跑（盈亏比>胜率）
+STOP_LOSS = -0.08     # -8% 快速止损，保住本金
 MIN_VOLUME_24H = 50000  # minimum 24h volume
 
 # === 低概率猎手策略参数 (inspired by 奔奔Ben: $16.8→$2500) ===
@@ -33,8 +33,16 @@ LONGSHOT_MAX_PER_TRADE_PCT = 0.015  # 单笔最多1.5%资金
 LONGSHOT_MAX_PER_TRADE_CAP = 100    # 单笔上限$100
 LONGSHOT_MAX_POSITIONS = 10          # 最多10个低概率仓位
 LONGSHOT_LIMIT_DISCOUNT = 0.25       # 挂单压低25%（如市价5¢挂3.75¢）
-LONGSHOT_TAKE_PROFIT = 1.0           # +100% 翻倍止盈
-LONGSHOT_STOP_LOSS = -0.50           # -50% 止损（低概率标的波动大）
+LONGSHOT_TAKE_PROFIT = 2.0           # +200% 3倍止盈（低概率要让利润飞）
+LONGSHOT_STOP_LOSS = -0.60           # -60% 止损（低概率标的波动大，给空间）
+
+# === 高概率收割策略 (Positive EV Grinding) ===
+HIGH_PROB_ENABLED = True
+HIGH_PROB_MIN_PRICE = 0.88    # 只买88%以上概率的"几乎确定"市场
+HIGH_PROB_MAX_PRICE = 0.96    # 不买>96%（利润太薄）
+HIGH_PROB_MAX_PER_TRADE_PCT = 0.10  # 单笔10%资金
+HIGH_PROB_MAX_POSITIONS = 5          # 最多5个高概率仓位
+HIGH_PROB_TAKE_PROFIT = 0.04         # +4% 即止盈（快进快出）
 
 def _load():
     if os.path.exists(PORTFOLIO_FILE):
@@ -236,6 +244,53 @@ def _score_longshot(m):
     return score
 
 
+def _score_high_prob(m):
+    """Score high-probability markets (88-96%) for safe grinding.
+    
+    Positive EV策略: 散户追彩票，我们吃确定性
+    - 90%+概率的事，散户经常只给80%定价
+    - 快进快出，+4%就走
+    """
+    yes_price = m["outcome_yes"]
+    no_price = m["outcome_no"]
+    
+    # 找两边中概率更高的那边
+    high_side = "yes" if yes_price >= no_price else "no"
+    high_price = max(yes_price, no_price)
+    
+    if high_price < HIGH_PROB_MIN_PRICE or high_price > HIGH_PROB_MAX_PRICE:
+        return 0, None
+    
+    if _is_short_term_sports(m):
+        return 0, None
+    
+    score = 30
+    
+    # 流动性很重要 — 要能快速出手
+    vol = m["volume_24h"]
+    if vol > 500000: score += 25
+    elif vol > 200000: score += 15
+    elif vol > 100000: score += 10
+    else: return 0, None  # 高概率策略需要好的流动性
+    
+    # 越接近88%越好（利润空间大）
+    if high_price <= 0.90:
+        score += 15
+    elif high_price <= 0.92:
+        score += 10
+    elif high_price <= 0.94:
+        score += 5
+    
+    # 地缘政治/政治更可预测
+    cat = _categorize_market(m.get("question", ""))
+    if cat in ("geopolitics", "politics"):
+        score += 10
+    elif cat == "economy":
+        score += 5
+    
+    return score, high_side
+
+
 def _decide_side(m):
     """Decide YES or NO based on category + price analysis.
     
@@ -301,10 +356,18 @@ def run_trading_cycle():
         current_price = m["outcome_yes"] if pos["side"] == "yes" else m["outcome_no"]
         pnl_pct = (current_price - pos["avg_price"]) / pos["avg_price"] if pos["avg_price"] > 0 else 0
         
-        # 低概率仓位用不同的止盈止损
+        # 不同策略用不同的止盈止损
         is_longshot = pos.get("longshot", False) or pos["avg_price"] <= LONGSHOT_MAX_PRICE
-        tp = LONGSHOT_TAKE_PROFIT if is_longshot else TAKE_PROFIT
-        sl = LONGSHOT_STOP_LOSS if is_longshot else STOP_LOSS
+        is_high_prob = pos.get("high_prob", False)
+        if is_longshot:
+            tp = LONGSHOT_TAKE_PROFIT
+            sl = LONGSHOT_STOP_LOSS
+        elif is_high_prob:
+            tp = HIGH_PROB_TAKE_PROFIT
+            sl = STOP_LOSS  # 用通用止损
+        else:
+            tp = TAKE_PROFIT
+            sl = STOP_LOSS
         
         reason = None
         if current_price <= 0.002 or current_price >= 0.98:
@@ -350,6 +413,7 @@ def run_trading_cycle():
             q_lower = m.get("question", "").lower()
             topic_conflict = False
             for keyword in ["iran", "bitcoin", "fed", "trump", "canada", "israel", "alien", "anthropic", "google", "openai"]:
+                if keyword in q_lower and keyword in held_topics:
                     topic_conflict = True
                     break
             if topic_conflict:
@@ -360,8 +424,8 @@ def run_trading_cycle():
         
         candidates.sort(key=lambda x: -x[0])
         slots = MAX_POSITIONS - num_positions
-        # Buy top candidates, max 5 new positions per cycle
-        to_buy = candidates[:min(slots, 5)]
+        # Buy top candidates, max 3 new positions per cycle (质量>数量)
+        to_buy = candidates[:min(slots, 3)]
         
         for score, m in to_buy:
             side, price = _decide_side(m)
@@ -439,6 +503,51 @@ def run_trading_cycle():
                     "time": datetime.now().isoformat()
                 })
                 actions.append(f"🎰 低概率 | {m['question'][:40]} | YES @ {limit_price*100:.1f}¢ (市价{yes_price*100:.1f}¢) | ${amount:.0f}")
+    
+    # 5. 高概率收割 — 88-96%概率的"几乎确定"市场
+    if HIGH_PROB_ENABLED:
+        hp_count = sum(1 for pos in data["positions"].values() if pos.get("high_prob"))
+        
+        if hp_count < HIGH_PROB_MAX_POSITIONS:
+            hp_candidates = []
+            for m in markets:
+                if m["id"] in {pos["market_id"] for pos in data["positions"].values()}:
+                    continue
+                hp_score, hp_side = _score_high_prob(m)
+                if hp_score > 0 and hp_side:
+                    hp_candidates.append((hp_score, m, hp_side))
+            
+            hp_candidates.sort(key=lambda x: -x[0])
+            hp_slots = HIGH_PROB_MAX_POSITIONS - hp_count
+            
+            for hp_score, m, hp_side in hp_candidates[:min(hp_slots, 2)]:  # max 2 per cycle
+                price = m["outcome_yes"] if hp_side == "yes" else m["outcome_no"]
+                
+                amount = min(
+                    data["balance"] * HIGH_PROB_MAX_PER_TRADE_PCT,
+                    data["balance"] - 200
+                )
+                amount = round(amount, 2)
+                if amount < 50:
+                    continue
+                
+                shares = amount / price
+                data["balance"] -= amount
+                key = f"hp_{m['id']}_{hp_side}"
+                data["positions"][key] = {
+                    "market_id": m["id"], "question": m["question"], "side": hp_side,
+                    "shares": round(shares, 2), "avg_price": round(price, 4),
+                    "bought_at": datetime.now().isoformat(), "score": hp_score,
+                    "high_prob": True
+                }
+                data["history"].append({
+                    "action": "buy", "question": m["question"], "side": hp_side,
+                    "price": price, "amount": amount, "shares": round(shares, 2),
+                    "score": hp_score, "high_prob": True,
+                    "note": f"💎高概率收割 | {price*100:.0f}%确定性",
+                    "time": datetime.now().isoformat()
+                })
+                actions.append(f"💎 高概率 | {m['question'][:40]} | {hp_side.upper()} @ {price*100:.0f}¢ | ${amount:.0f}")
     
     data["last_trade"] = datetime.now().isoformat()
     _save(data)
