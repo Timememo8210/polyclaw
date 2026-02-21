@@ -1,5 +1,5 @@
 {
-  "balance": 2846.7285549999974,
+  "balance": 1438.9875199999976,
   "positions": {
     "553828_yes": {
       "market_id": "553828",
@@ -137,15 +137,6 @@
       "limit_order": true,
       "original_market_price": 0.0035
     },
-    "703257_yes": {
-      "market_id": "703257",
-      "question": "Will the US confirm that aliens exist before 2027?",
-      "side": "yes",
-      "shares": 3533.89,
-      "avg_price": 0.175,
-      "bought_at": "2026-02-20T06:01:10.720871",
-      "score": 45
-    },
     "566737_yes": {
       "market_id": "566737",
       "question": "Will Lens win the 2025–26 French Ligue 1?",
@@ -154,18 +145,6 @@
       "avg_price": 0.1205,
       "bought_at": "2026-02-20T06:01:10.720885",
       "score": 33
-    },
-    "ls_1320793_yes": {
-      "market_id": "1320793",
-      "question": "US strikes Iran by February 20, 2026?",
-      "side": "yes",
-      "shares": 3603.23,
-      "avg_price": 0.0124,
-      "bought_at": "2026-02-20T06:01:10.721160",
-      "score": 75,
-      "longshot": true,
-      "limit_order": true,
-      "original_market_price": 0.0165
     },
     "ls_572470_yes": {
       "market_id": "572470",
@@ -179,17 +158,86 @@
       "limit_order": true,
       "original_market_price": 0.0025
     },
+    "1370976_yes": {
+      "market_id": "1370976",
+      "question": "Will Hilton Grand Vacations (HGV) beat quarterly earnings?",
+      "side": "yes",
+      "shares": 1211.98,
+      "avg_price": 0.42,
+      "bought_at": "2026-02-20T18:01:01.694599",
+      "score": 56
+    },
+    "1403088_no": {
+      "market_id": "1403088",
+      "question": "Spread: Timberwolves (-14.5)",
+      "side": "no",
+      "shares": 1042.6,
+      "avg_price": 0.415,
+      "bought_at": "2026-02-20T18:01:01.694618",
+      "score": 51
+    },
+    "703257_yes": {
+      "market_id": "703257",
+      "question": "Will the US confirm that aliens exist before 2027?",
+      "side": "yes",
+      "shares": 2536.41,
+      "avg_price": 0.145,
+      "bought_at": "2026-02-20T18:01:01.694642",
+      "score": 50
+    },
+    "1400681_yes": {
+      "market_id": "1400681",
+      "question": "Spread: Cavaliers (-5.5)",
+      "side": "yes",
+      "shares": 801.56,
+      "avg_price": 0.39,
+      "bought_at": "2026-02-20T18:01:01.694654",
+      "score": 50
+    },
+    "558938_yes": {
+      "market_id": "558938",
+      "question": "Will Argentina win the 2026 FIFA World Cup?",
+      "side": "yes",
+      "shares": 2351.5,
+      "avg_price": 0.113,
+      "bought_at": "2026-02-20T18:01:01.694661",
+      "score": 44
+    },
+    "ls_1320793_yes": {
+      "market_id": "1320793",
+      "question": "US strikes Iran by February 20, 2026?",
+      "side": "yes",
+      "shares": 6644.12,
+      "avg_price": 0.0034,
+      "bought_at": "2026-02-20T18:01:01.694912",
+      "score": 80,
+      "longshot": true,
+      "limit_order": true,
+      "original_market_price": 0.0045
+    },
     "ls_1273928_yes": {
       "market_id": "1273928",
       "question": "Will the US next strike Iran on February 20, 2026 (ET)?",
       "side": "yes",
-      "shares": 3309.16,
-      "avg_price": 0.0131,
-      "bought_at": "2026-02-20T06:01:10.721179",
+      "shares": 5426.83,
+      "avg_price": 0.0041,
+      "bought_at": "2026-02-20T18:01:01.694923",
+      "score": 80,
+      "longshot": true,
+      "limit_order": true,
+      "original_market_price": 0.0055
+    },
+    "ls_1370895_yes": {
+      "market_id": "1370895",
+      "question": "Judy Shelton Fed Chair Nomination Odds >10% by Feb 20?",
+      "side": "yes",
+      "shares": 4471.43,
+      "avg_price": 0.0049,
+      "bought_at": "2026-02-20T18:01:01.694932",
       "score": 75,
       "longshot": true,
       "limit_order": true,
-      "original_market_price": 0.0175
+      "original_market_price": 0.0065
     }
   },
   "history": [
@@ -1039,6 +1087,125 @@
       "longshot": true,
       "note": "🎰低概率猎手 | 市价1.8¢ → 挂单1.3¢",
       "time": "2026-02-20T06:01:10.721181"
+    },
+    {
+      "action": "sell",
+      "question": "Will the US confirm that aliens exist before 2027?",
+      "side": "yes",
+      "price": 0.145,
+      "shares": 3533.89,
+      "proceeds": 512.41,
+      "profit": -106.02,
+      "reason": "止损 -17%",
+      "time": "2026-02-20T18:01:01.694211"
+    },
+    {
+      "action": "sell",
+      "question": "US strikes Iran by February 20, 2026?",
+      "side": "yes",
+      "price": 0.0045,
+      "shares": 3603.23,
+      "proceeds": 16.21,
+      "profit": -28.47,
+      "reason": "止损 -64%",
+      "time": "2026-02-20T18:01:01.694227"
+    },
+    {
+      "action": "sell",
+      "question": "Will the US next strike Iran on February 20, 2026 (ET)?",
+      "side": "yes",
+      "price": 0.0055,
+      "shares": 3309.16,
+      "proceeds": 18.2,
+      "profit": -25.15,
+      "reason": "止损 -58%",
+      "time": "2026-02-20T18:01:01.694235"
+    },
+    {
+      "action": "buy",
+      "question": "Will Hilton Grand Vacations (HGV) beat quarterly earnings?",
+      "side": "yes",
+      "price": 0.42,
+      "amount": 509.03,
+      "shares": 1211.98,
+      "score": 56,
+      "time": "2026-02-20T18:01:01.694603"
+    },
+    {
+      "action": "buy",
+      "question": "Spread: Timberwolves (-14.5)",
+      "side": "no",
+      "price": 0.415,
+      "amount": 432.68,
+      "shares": 1042.6,
+      "score": 51,
+      "time": "2026-02-20T18:01:01.694621"
+    },
+    {
+      "action": "buy",
+      "question": "Will the US confirm that aliens exist before 2027?",
+      "side": "yes",
+      "price": 0.145,
+      "amount": 367.78,
+      "shares": 2536.41,
+      "score": 50,
+      "time": "2026-02-20T18:01:01.694645"
+    },
+    {
+      "action": "buy",
+      "question": "Spread: Cavaliers (-5.5)",
+      "side": "yes",
+      "price": 0.39,
+      "amount": 312.61,
+      "shares": 801.56,
+      "score": 50,
+      "time": "2026-02-20T18:01:01.694656"
+    },
+    {
+      "action": "buy",
+      "question": "Will Argentina win the 2026 FIFA World Cup?",
+      "side": "yes",
+      "price": 0.113,
+      "amount": 265.72,
+      "shares": 2351.5,
+      "score": 44,
+      "time": "2026-02-20T18:01:01.694663"
+    },
+    {
+      "action": "buy",
+      "question": "US strikes Iran by February 20, 2026?",
+      "side": "yes",
+      "price": 0.0034,
+      "amount": 22.59,
+      "shares": 6644.12,
+      "score": 80,
+      "longshot": true,
+      "note": "🎰低概率猎手 | 市价0.4¢ → 挂单0.3¢",
+      "time": "2026-02-20T18:01:01.694916"
+    },
+    {
+      "action": "buy",
+      "question": "Will the US next strike Iran on February 20, 2026 (ET)?",
+      "side": "yes",
+      "price": 0.0041,
+      "amount": 22.25,
+      "shares": 5426.83,
+      "score": 80,
+      "longshot": true,
+      "note": "🎰低概率猎手 | 市价0.5¢ → 挂单0.4¢",
+      "time": "2026-02-20T18:01:01.694927"
+    },
+    {
+      "action": "buy",
+      "question": "Judy Shelton Fed Chair Nomination Odds >10% by Feb 20?",
+      "side": "yes",
+      "price": 0.0049,
+      "amount": 21.91,
+      "shares": 4471.43,
+      "score": 75,
+      "longshot": true,
+      "note": "🎰低概率猎手 | 市价0.7¢ → 挂单0.5¢",
+      "time": "2026-02-20T18:01:01.694935"
     }
   ],
   "daily_snapshots": [
@@ -1053,8 +1220,14 @@
       "total_value": 10485.95,
       "pnl": 485.95,
       "positions": 19
+    },
+    {
+      "date": "2026-02-20",
+      "total_value": 10660.79,
+      "pnl": 660.79,
+      "positions": 24
     }
   ],
   "created": "2026-02-18T10:31:42.254192",
-  "last_trade": "2026-02-20T06:01:10.721184"
+  "last_trade": "2026-02-20T18:01:01.694938"
 }

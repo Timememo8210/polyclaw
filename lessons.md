@@ -73,4 +73,28 @@
 - 如果OpenAI赢，两个都亏；只有Google赢才双赢
 - **教训：** 表面看像对冲，实际分析底层逻辑是否真正分散
 
-*最后更新: 2026-02-19 18:00*
+### 2026-02-20 晚报复盘: Spread 过滤器仍未生效！
+- 又买了 Timberwolves (-14.5) NO $433 和 Cavaliers (-5.5) YES $313
+- 19号复盘已明确写了要禁止 Spread，但代码没改到位
+- **修复：** `_is_short_term_sports` 加入 "spread:" 等关键词检测 ✅ 已修复
+
+### 2026-02-20 晚报复盘: 卖出后立刻回买同一主题
+- Aliens YES 止损卖出亏 $106，同一交易周期又买回 $368
+- topic conflict 检测关键词列表缺少 "alien"
+- **修复：** topic 关键词列表增加 "alien", "anthropic", "google", "openai" ✅ 已修复
+
+### 2026-02-20 晚报复盘: 同日到期 longshot = 白送钱
+- Iran Feb 20 两个 longshot + Judy Shelton Feb 20，全部今天到期，必归零
+- 19号已写了"longshot 至少7天"，但代码没实现
+- 预计亏损: ~$67（3个 longshot 各 ~$22）
+- **修复：** `_score_longshot` 增加到期日检测，<7天直接返回0 ✅ 已修复
+
+### 2026-02-20: 今日实际亏损汇总
+- Aliens YES 止损: -$106.02
+- Iran Feb 20 YES 止损: -$28.47
+- Iran Feb 20 Next Strike 止损: -$25.15
+- 3个同日到期 longshot: 预计 -$67（尚未结算）
+- **总计: 约 -$227 日亏损**
+- 但持仓中 Kevin Hassett +31.6%, Lens +2.9%, Iran longshots 浮盈 → 部分对冲
+
+*最后更新: 2026-02-20 18:00*

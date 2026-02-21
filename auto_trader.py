@@ -100,6 +100,9 @@ def _is_short_term_sports(m):
     # "X vs Y" / "X vs. Y" — single-game matchups
     if " vs " in q or " vs. " in q:
         return True
+    # "Spread:", "Over", "Under", "Moneyline" — single-game derivatives
+    if any(kw in q for kw in ["spread:", "spread ", "over/under", "moneyline", "total points", "total goals"]):
+        return True
     return False
 
 def _score_market(m):
@@ -178,6 +181,28 @@ def _score_longshot(m):
     # 短期体育赛事仍然禁止
     if _is_short_term_sports(m):
         return 0
+    
+    # 距到期<7天的标的不买（低概率需要时间发酵）
+    q = m.get("question", "").lower()
+    today = datetime.now()
+    import re
+    # Check for date patterns like "February 20, 2026" or "Feb 20" or "2026-02-20"
+    date_patterns = [
+        r'(january|february|march|april|may|june|july|august|september|october|november|december)\s+(\d{1,2}),?\s*(\d{4})?',
+        r'by\s+(feb|mar|apr|jan)\w*\s+(\d{1,2})',
+    ]
+    for pat in date_patterns:
+        match = re.search(pat, q)
+        if match:
+            try:
+                import dateutil.parser
+                # Try to parse the date from question
+                date_str = match.group(0)
+                parsed = dateutil.parser.parse(date_str, default=today)
+                if (parsed - today).days < 7:
+                    return 0  # Too close to expiry
+            except:
+                pass
     
     score = 30  # base score for being in range
     
@@ -312,7 +337,7 @@ def run_trading_cycle():
     for pos in data["positions"].values():
         q = pos["question"].lower()
         # Normalize: strip date specifics to catch "Iran strike by Feb 22" vs "Feb 28"
-        for keyword in ["iran", "bitcoin", "fed", "trump", "canada", "israel"]:
+        for keyword in ["iran", "bitcoin", "fed", "trump", "canada", "israel", "alien", "anthropic", "google", "openai"]:
             if keyword in q:
                 held_topics.add(keyword)
     
@@ -324,8 +349,7 @@ def run_trading_cycle():
             # Prevent conflicting positions on same topic
             q_lower = m.get("question", "").lower()
             topic_conflict = False
-            for keyword in ["iran", "bitcoin", "fed", "trump", "canada", "israel"]:
-                if keyword in q_lower and keyword in held_topics:
+            for keyword in ["iran", "bitcoin", "fed", "trump", "canada", "israel", "alien", "anthropic", "google", "openai"]:
                     topic_conflict = True
                     break
             if topic_conflict:
