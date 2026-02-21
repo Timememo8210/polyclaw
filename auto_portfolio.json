@@ -1,5 +1,5 @@
 {
-  "balance": 793.4878649999974,
+  "balance": 991.2735649999975,
   "positions": {
     "553828_yes": {
       "market_id": "553828",
@@ -190,15 +190,6 @@
       "avg_price": 0.113,
       "bought_at": "2026-02-20T18:01:01.694661",
       "score": 44
-    },
-    "1369672_no": {
-      "market_id": "1369672",
-      "question": "Will Papa John's International (PZZA) beat quarterly earnings?",
-      "side": "no",
-      "shares": 670.46,
-      "avg_price": 0.325,
-      "bought_at": "2026-02-20T22:15:28.947848",
-      "score": 54
     },
     "1360921_no": {
       "market_id": "1360921",
@@ -1472,6 +1463,18 @@
       "reason": "已结算 (0.1¢)",
       "strategy": "fear",
       "time": "2026-02-20T22:23:55.344525"
+    },
+    {
+      "action": "sell",
+      "question": "Will Papa John's International (PZZA) beat quarterly earnings?",
+      "side": "no",
+      "price": 0.295,
+      "shares": 670.46,
+      "proceeds": 197.79,
+      "profit": -20.11,
+      "reason": "止损 -9%",
+      "strategy": "fear",
+      "time": "2026-02-21T06:00:27.983967"
     }
   ],
   "daily_snapshots": [
@@ -1495,5 +1498,5 @@
     }
   ],
   "created": "2026-02-18T10:31:42.254192",
-  "last_trade": "2026-02-21T02:25:22.948023"
+  "last_trade": "2026-02-21T06:00:27.983984"
 }
