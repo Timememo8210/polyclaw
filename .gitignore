@@ -4,3 +4,9 @@ venv/
 polyclaw-env/
 portfolio.json
 .env
+price_cache.json
+price_alerts.json
+trigger_trade.json
+monitor.log
+monitor_stdout.log
+monitor_stderr.log
