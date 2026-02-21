@@ -1,5 +1,5 @@
 {
-  "balance": 991.2735649999975,
+  "balance": 1438.0666249999974,
   "positions": {
     "553828_yes": {
       "market_id": "553828",
@@ -137,15 +137,6 @@
       "limit_order": true,
       "original_market_price": 0.0035
     },
-    "566737_yes": {
-      "market_id": "566737",
-      "question": "Will Lens win the 2025–26 French Ligue 1?",
-      "side": "yes",
-      "shares": 4362.41,
-      "avg_price": 0.1205,
-      "bought_at": "2026-02-20T06:01:10.720885",
-      "score": 33
-    },
     "1370976_yes": {
       "market_id": "1370976",
       "question": "Will Hilton Grand Vacations (HGV) beat quarterly earnings?",
@@ -191,15 +182,6 @@
       "bought_at": "2026-02-20T18:01:01.694661",
       "score": 44
     },
-    "1360921_no": {
-      "market_id": "1360921",
-      "question": "Will Domino's Pizza (DPZ) beat quarterly earnings?",
-      "side": "no",
-      "shares": 463.05,
-      "avg_price": 0.4,
-      "bought_at": "2026-02-20T22:15:28.947885",
-      "score": 52
-    },
     "hp_1386656_no": {
       "market_id": "1386656",
       "question": "US strikes Iran by February 22, 2026?",
@@ -239,6 +221,26 @@
       "bought_at": "2026-02-20T22:21:40.307357",
       "score": 60,
       "high_prob": true
+    },
+    "hp_568634_no": {
+      "market_id": "568634",
+      "question": "Will Xander Schauffele win the 2026 Masters tournament?",
+      "side": "no",
+      "shares": 185.52,
+      "avg_price": 0.957,
+      "bought_at": "2026-02-21T08:02:18.834802",
+      "strategy": "hp",
+      "score": 15
+    },
+    "hp_1057883_no": {
+      "market_id": "1057883",
+      "question": "Will Bitcoin reach $250,000 by December 31, 2026?",
+      "side": "no",
+      "shares": 168.81,
+      "avg_price": 0.9465,
+      "bought_at": "2026-02-21T08:02:18.834823",
+      "strategy": "hp",
+      "score": 5
     }
   },
   "history": [
@@ -1475,6 +1477,50 @@
       "reason": "止损 -9%",
       "strategy": "fear",
       "time": "2026-02-21T06:00:27.983967"
+    },
+    {
+      "action": "sell",
+      "question": "Will Lens win the 2025–26 French Ligue 1?",
+      "side": "yes",
+      "price": 0.141,
+      "shares": 4362.41,
+      "proceeds": 615.1,
+      "profit": 89.43,
+      "reason": "止盈 +17%",
+      "strategy": "fear",
+      "time": "2026-02-21T08:02:18.832131"
+    },
+    {
+      "action": "sell",
+      "question": "Will Domino's Pizza (DPZ) beat quarterly earnings?",
+      "side": "no",
+      "price": 0.365,
+      "shares": 463.05,
+      "proceeds": 169.01,
+      "profit": -16.21,
+      "reason": "止损 -9%",
+      "strategy": "fear",
+      "time": "2026-02-21T08:02:18.832160"
+    },
+    {
+      "action": "buy",
+      "question": "Will Xander Schauffele win the 2026 Masters tournament?",
+      "side": "no",
+      "price": 0.957,
+      "amount": 177.54,
+      "shares": 185.52,
+      "strategy": "hp",
+      "time": "2026-02-21T08:02:18.834808"
+    },
+    {
+      "action": "buy",
+      "question": "Will Bitcoin reach $250,000 by December 31, 2026?",
+      "side": "no",
+      "price": 0.9465,
+      "amount": 159.78,
+      "shares": 168.81,
+      "strategy": "hp",
+      "time": "2026-02-21T08:02:18.834827"
     }
   ],
   "daily_snapshots": [
@@ -1498,5 +1544,5 @@
     }
   ],
   "created": "2026-02-18T10:31:42.254192",
-  "last_trade": "2026-02-21T06:00:51.207682"
+  "last_trade": "2026-02-21T09:01:00.180876"
 }
