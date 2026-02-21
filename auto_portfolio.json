@@ -1,5 +1,5 @@
 {
-  "balance": 1438.9875199999976,
+  "balance": 793.4878649999974,
   "positions": {
     "553828_yes": {
       "market_id": "553828",
@@ -146,18 +146,6 @@
       "bought_at": "2026-02-20T06:01:10.720885",
       "score": 33
     },
-    "ls_572470_yes": {
-      "market_id": "572470",
-      "question": "Will Trump nominate Kevin Hassett as the next Fed chair?",
-      "side": "yes",
-      "shares": 23163.16,
-      "avg_price": 0.0019,
-      "bought_at": "2026-02-20T06:01:10.721170",
-      "score": 75,
-      "longshot": true,
-      "limit_order": true,
-      "original_market_price": 0.0025
-    },
     "1370976_yes": {
       "market_id": "1370976",
       "question": "Will Hilton Grand Vacations (HGV) beat quarterly earnings?",
@@ -203,41 +191,63 @@
       "bought_at": "2026-02-20T18:01:01.694661",
       "score": 44
     },
-    "ls_1320793_yes": {
-      "market_id": "1320793",
-      "question": "US strikes Iran by February 20, 2026?",
-      "side": "yes",
-      "shares": 6644.12,
-      "avg_price": 0.0034,
-      "bought_at": "2026-02-20T18:01:01.694912",
-      "score": 80,
-      "longshot": true,
-      "limit_order": true,
-      "original_market_price": 0.0045
+    "1369672_no": {
+      "market_id": "1369672",
+      "question": "Will Papa John's International (PZZA) beat quarterly earnings?",
+      "side": "no",
+      "shares": 670.46,
+      "avg_price": 0.325,
+      "bought_at": "2026-02-20T22:15:28.947848",
+      "score": 54
     },
-    "ls_1273928_yes": {
-      "market_id": "1273928",
-      "question": "Will the US next strike Iran on February 20, 2026 (ET)?",
-      "side": "yes",
-      "shares": 5426.83,
-      "avg_price": 0.0041,
-      "bought_at": "2026-02-20T18:01:01.694923",
-      "score": 80,
-      "longshot": true,
-      "limit_order": true,
-      "original_market_price": 0.0055
+    "1360921_no": {
+      "market_id": "1360921",
+      "question": "Will Domino's Pizza (DPZ) beat quarterly earnings?",
+      "side": "no",
+      "shares": 463.05,
+      "avg_price": 0.4,
+      "bought_at": "2026-02-20T22:15:28.947885",
+      "score": 52
     },
-    "ls_1370895_yes": {
-      "market_id": "1370895",
-      "question": "Judy Shelton Fed Chair Nomination Odds >10% by Feb 20?",
+    "hp_1386656_no": {
+      "market_id": "1386656",
+      "question": "US strikes Iran by February 22, 2026?",
+      "side": "no",
+      "shares": 106.14,
+      "avg_price": 0.945,
+      "bought_at": "2026-02-20T22:15:28.950305",
+      "score": 65,
+      "high_prob": true
+    },
+    "hp_654414_yes": {
+      "market_id": "654414",
+      "question": "Will there be no change in Fed interest rates after the March 2026 meeting?",
       "side": "yes",
-      "shares": 4471.43,
-      "avg_price": 0.0049,
-      "bought_at": "2026-02-20T18:01:01.694932",
-      "score": 75,
-      "longshot": true,
-      "limit_order": true,
-      "original_market_price": 0.0065
+      "shares": 95.32,
+      "avg_price": 0.947,
+      "bought_at": "2026-02-20T22:15:28.950321",
+      "score": 60,
+      "high_prob": true
+    },
+    "hp_1386657_no": {
+      "market_id": "1386657",
+      "question": "US strikes Iran by February 23, 2026?",
+      "side": "no",
+      "shares": 85.24,
+      "avg_price": 0.935,
+      "bought_at": "2026-02-20T22:21:40.307343",
+      "score": 60,
+      "high_prob": true
+    },
+    "hp_572469_yes": {
+      "market_id": "572469",
+      "question": "Will Trump nominate Kevin Warsh as the next Fed chair?",
+      "side": "yes",
+      "shares": 76.51,
+      "avg_price": 0.9375,
+      "bought_at": "2026-02-20T22:21:40.307357",
+      "score": 60,
+      "high_prob": true
     }
   },
   "history": [
@@ -1206,6 +1216,262 @@
       "longshot": true,
       "note": "🎰低概率猎手 | 市价0.7¢ → 挂单0.5¢",
       "time": "2026-02-20T18:01:01.694935"
+    },
+    {
+      "action": "sell",
+      "question": "US strikes Iran by February 20, 2026?",
+      "side": "yes",
+      "price": 0.0005,
+      "shares": 6644.12,
+      "proceeds": 3.32,
+      "profit": -19.27,
+      "reason": "已结算 (0.1¢)",
+      "time": "2026-02-20T22:15:28.947005"
+    },
+    {
+      "action": "sell",
+      "question": "Will the US next strike Iran on February 20, 2026 (ET)?",
+      "side": "yes",
+      "price": 0.0015,
+      "shares": 5426.83,
+      "proceeds": 8.14,
+      "profit": -14.11,
+      "reason": "已结算 (0.1¢)",
+      "time": "2026-02-20T22:15:28.947046"
+    },
+    {
+      "action": "sell",
+      "question": "Judy Shelton Fed Chair Nomination Odds >10% by Feb 20?",
+      "side": "yes",
+      "price": 0.0005,
+      "shares": 4471.43,
+      "proceeds": 2.24,
+      "profit": -19.67,
+      "reason": "已结算 (0.1¢)",
+      "time": "2026-02-20T22:15:28.947063"
+    },
+    {
+      "action": "buy",
+      "question": "Will Papa John's International (PZZA) beat quarterly earnings?",
+      "side": "no",
+      "price": 0.325,
+      "amount": 217.9,
+      "shares": 670.46,
+      "score": 54,
+      "time": "2026-02-20T22:15:28.947854"
+    },
+    {
+      "action": "buy",
+      "question": "Will Domino's Pizza (DPZ) beat quarterly earnings?",
+      "side": "no",
+      "price": 0.4,
+      "amount": 185.22,
+      "shares": 463.05,
+      "score": 52,
+      "time": "2026-02-20T22:15:28.947889"
+    },
+    {
+      "action": "buy",
+      "question": "Will the US next strike Iran on February 20, 2026 (ET)?",
+      "side": "yes",
+      "price": 0.0011,
+      "amount": 15.74,
+      "shares": 14309.09,
+      "score": 80,
+      "longshot": true,
+      "note": "🎰低概率猎手 | 市价0.1¢ → 挂单0.1¢",
+      "time": "2026-02-20T22:15:28.950006"
+    },
+    {
+      "action": "buy",
+      "question": "US strikes Iran by February 21, 2026?",
+      "side": "yes",
+      "price": 0.0176,
+      "amount": 15.51,
+      "shares": 881.25,
+      "score": 75,
+      "longshot": true,
+      "note": "🎰低概率猎手 | 市价2.4¢ → 挂单1.8¢",
+      "time": "2026-02-20T22:15:28.950024"
+    },
+    {
+      "action": "buy",
+      "question": "Will the Fed decrease interest rates by 50+ bps after the March 2026 meeting?",
+      "side": "yes",
+      "price": 0.0049,
+      "amount": 15.27,
+      "shares": 3116.33,
+      "score": 70,
+      "longshot": true,
+      "note": "🎰低概率猎手 | 市价0.7¢ → 挂单0.5¢",
+      "time": "2026-02-20T22:15:28.950038"
+    },
+    {
+      "action": "buy",
+      "question": "US strikes Iran by February 22, 2026?",
+      "side": "no",
+      "price": 0.945,
+      "amount": 100.3,
+      "shares": 106.14,
+      "score": 65,
+      "high_prob": true,
+      "note": "💎高概率收割 | 94%确定性",
+      "time": "2026-02-20T22:15:28.950312"
+    },
+    {
+      "action": "buy",
+      "question": "Will there be no change in Fed interest rates after the March 2026 meeting?",
+      "side": "yes",
+      "price": 0.947,
+      "amount": 90.27,
+      "shares": 95.32,
+      "score": 60,
+      "high_prob": true,
+      "note": "💎高概率收割 | 95%确定性",
+      "time": "2026-02-20T22:15:28.950325"
+    },
+    {
+      "action": "sell",
+      "question": "Will the US next strike Iran on February 20, 2026 (ET)?",
+      "side": "yes",
+      "price": 0.0015,
+      "shares": 14309.09,
+      "proceeds": 21.46,
+      "profit": 5.72,
+      "reason": "已结算 (0.1¢)",
+      "time": "2026-02-20T22:21:40.305009"
+    },
+    {
+      "action": "buy",
+      "question": "Will the US next strike Iran on February 20, 2026 (ET)?",
+      "side": "yes",
+      "price": 0.0011,
+      "amount": 12.51,
+      "shares": 11372.73,
+      "score": 80,
+      "longshot": true,
+      "note": "🎰低概率猎手 | 市价0.1¢ → 挂单0.1¢",
+      "time": "2026-02-20T22:21:40.307061"
+    },
+    {
+      "action": "buy",
+      "question": "Will the Fed increase interest rates by 25+ bps after the March 2026 meeting?",
+      "side": "yes",
+      "price": 0.0049,
+      "amount": 12.32,
+      "shares": 2514.29,
+      "score": 70,
+      "longshot": true,
+      "note": "🎰低概率猎手 | 市价0.7¢ → 挂单0.5¢",
+      "time": "2026-02-20T22:21:40.307083"
+    },
+    {
+      "action": "buy",
+      "question": "Will Bitcoin reach $150,000 in February?",
+      "side": "yes",
+      "price": 0.0011,
+      "amount": 12.14,
+      "shares": 11036.36,
+      "score": 70,
+      "longshot": true,
+      "note": "🎰低概率猎手 | 市价0.1¢ → 挂单0.1¢",
+      "time": "2026-02-20T22:21:40.307098"
+    },
+    {
+      "action": "buy",
+      "question": "US strikes Iran by February 23, 2026?",
+      "side": "no",
+      "price": 0.935,
+      "amount": 79.7,
+      "shares": 85.24,
+      "score": 60,
+      "high_prob": true,
+      "note": "💎高概率收割 | 94%确定性",
+      "time": "2026-02-20T22:21:40.307349"
+    },
+    {
+      "action": "buy",
+      "question": "Will Trump nominate Kevin Warsh as the next Fed chair?",
+      "side": "yes",
+      "price": 0.9375,
+      "amount": 71.73,
+      "shares": 76.51,
+      "score": 60,
+      "high_prob": true,
+      "note": "💎高概率收割 | 94%确定性",
+      "time": "2026-02-20T22:21:40.307360"
+    },
+    {
+      "action": "sell",
+      "question": "Will Trump nominate Kevin Hassett as the next Fed chair?",
+      "side": "yes",
+      "price": 0.0025,
+      "shares": 23163.16,
+      "proceeds": 57.91,
+      "profit": 13.9,
+      "reason": "止盈 +32%",
+      "strategy": "fear",
+      "time": "2026-02-20T22:23:55.344484"
+    },
+    {
+      "action": "sell",
+      "question": "US strikes Iran by February 21, 2026?",
+      "side": "yes",
+      "price": 0.0225,
+      "shares": 881.25,
+      "proceeds": 19.83,
+      "profit": 4.32,
+      "reason": "止盈 +28%",
+      "strategy": "fear",
+      "time": "2026-02-20T22:23:55.344501"
+    },
+    {
+      "action": "sell",
+      "question": "Will the Fed decrease interest rates by 50+ bps after the March 2026 meeting?",
+      "side": "yes",
+      "price": 0.0065,
+      "shares": 3116.33,
+      "proceeds": 20.26,
+      "profit": 4.99,
+      "reason": "止盈 +33%",
+      "strategy": "fear",
+      "time": "2026-02-20T22:23:55.344509"
+    },
+    {
+      "action": "sell",
+      "question": "Will the US next strike Iran on February 20, 2026 (ET)?",
+      "side": "yes",
+      "price": 0.0015,
+      "shares": 11372.73,
+      "proceeds": 17.06,
+      "profit": 4.55,
+      "reason": "已结算 (0.1¢)",
+      "strategy": "fear",
+      "time": "2026-02-20T22:23:55.344516"
+    },
+    {
+      "action": "sell",
+      "question": "Will the Fed increase interest rates by 25+ bps after the March 2026 meeting?",
+      "side": "yes",
+      "price": 0.0065,
+      "shares": 2514.29,
+      "proceeds": 16.34,
+      "profit": 4.02,
+      "reason": "止盈 +33%",
+      "strategy": "fear",
+      "time": "2026-02-20T22:23:55.344521"
+    },
+    {
+      "action": "sell",
+      "question": "Will Bitcoin reach $150,000 in February?",
+      "side": "yes",
+      "price": 0.0015,
+      "shares": 11036.36,
+      "proceeds": 16.55,
+      "profit": 4.41,
+      "reason": "已结算 (0.1¢)",
+      "strategy": "fear",
+      "time": "2026-02-20T22:23:55.344525"
     }
   ],
   "daily_snapshots": [
@@ -1229,5 +1495,5 @@
     }
   ],
   "created": "2026-02-18T10:31:42.254192",
-  "last_trade": "2026-02-20T18:01:01.694938"
+  "last_trade": "2026-02-20T22:23:55.344533"
 }
