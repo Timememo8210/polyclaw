@@ -17,7 +17,10 @@ LOG_FILE = os.path.join(os.path.dirname(__file__), "monitor.log")
 
 # 异动阈值
 ALERT_THRESHOLD = 0.05      # 5% 价格变化触发警报
-SCAN_INTERVAL = 60           # 每60秒扫描一次
+SCAN_INTERVAL = 10           # 每10秒扫描一次
+SCAN_INTERVAL_FALLBACK = 60  # 失败时降速到60秒
+CONSECUTIVE_FAILURES = 0     # 连续失败计数
+MAX_FAILURES_BEFORE_BACKOFF = 3  # 连续3次失败则降速
 COOLDOWN_MINUTES = 30        # 同一市场警报冷却30分钟
 MAX_ALERTS_PER_HOUR = 5      # 每小时最多触发5次交易
 
@@ -176,6 +179,7 @@ def run_monitor_loop():
     log.info(f"   Max triggers/hour: {MAX_ALERTS_PER_HOUR}")
     log.info("=" * 50)
     
+    consecutive_failures = 0
     while True:
         try:
             # 1. Load current state
@@ -233,8 +237,14 @@ def run_monitor_loop():
             # 7. Update cache
             save_price_cache(current_prices)
             
+            consecutive_failures = 0
         except Exception as e:
             log.error(f"Monitor error: {e}", exc_info=True)
+            consecutive_failures += 1
+            if consecutive_failures >= MAX_FAILURES_BEFORE_BACKOFF:
+                log.warning(f"⚠️ {consecutive_failures} consecutive failures, backing off to {SCAN_INTERVAL_FALLBACK}s")
+                time.sleep(SCAN_INTERVAL_FALLBACK)
+                continue
         
         time.sleep(SCAN_INTERVAL)
 
