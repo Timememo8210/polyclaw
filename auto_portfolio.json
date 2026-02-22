@@ -1,5 +1,5 @@
 {
-  "balance": 1388.0661049999974,
+  "balance": 1313.7717549999975,
   "positions": {
     "553828_yes": {
       "market_id": "553828",
@@ -115,15 +115,6 @@
       "avg_price": 0.375,
       "bought_at": "2026-02-19T18:01:17.628169",
       "score": 51
-    },
-    "1277193_no": {
-      "market_id": "1277193",
-      "question": "Will Anthropic have the best AI model at the end of February 2026?",
-      "side": "no",
-      "shares": 1904.57,
-      "avg_price": 0.1815,
-      "bought_at": "2026-02-19T18:01:17.628210",
-      "score": 37
     },
     "ls_572471_yes": {
       "market_id": "572471",
@@ -241,6 +232,26 @@
       "bought_at": "2026-02-22T00:00:21.591857",
       "strategy": "hp",
       "score": 15
+    },
+    "ls_1386656_yes": {
+      "market_id": "1386656",
+      "question": "US strikes Iran by February 22, 2026?",
+      "side": "yes",
+      "shares": 5755.4,
+      "avg_price": 0.0139,
+      "bought_at": "2026-02-22T00:36:34.593283",
+      "strategy": "ls",
+      "score": 55
+    },
+    "ls_1273933_yes": {
+      "market_id": "1273933",
+      "question": "Will the US next strike Iran on February 24, 2026 (ET)?",
+      "side": "yes",
+      "shares": 4188.48,
+      "avg_price": 0.0191,
+      "bought_at": "2026-02-22T00:36:34.593302",
+      "strategy": "ls",
+      "score": 55
     }
   },
   "history": [
@@ -1543,6 +1554,38 @@
       "shares": 170.89,
       "strategy": "hp",
       "time": "2026-02-22T00:00:21.591861"
+    },
+    {
+      "action": "sell",
+      "question": "Will Anthropic have the best AI model at the end of February 2026?",
+      "side": "no",
+      "price": 0.045,
+      "shares": 1904.57,
+      "proceeds": 85.71,
+      "profit": -259.97,
+      "reason": "止损 -75%",
+      "strategy": "fear",
+      "time": "2026-02-22T00:36:34.587215"
+    },
+    {
+      "action": "buy",
+      "question": "US strikes Iran by February 22, 2026?",
+      "side": "yes",
+      "price": 0.0139,
+      "amount": 80,
+      "shares": 5755.4,
+      "strategy": "ls",
+      "time": "2026-02-22T00:36:34.593289"
+    },
+    {
+      "action": "buy",
+      "question": "Will the US next strike Iran on February 24, 2026 (ET)?",
+      "side": "yes",
+      "price": 0.0191,
+      "amount": 80,
+      "shares": 4188.48,
+      "strategy": "ls",
+      "time": "2026-02-22T00:36:34.593306"
     }
   ],
   "daily_snapshots": [
@@ -1572,5 +1615,5 @@
     }
   ],
   "created": "2026-02-18T10:31:42.254192",
-  "last_trade": "2026-02-22T00:00:21.591865"
+  "last_trade": "2026-02-22T03:00:22.167854"
 }
