@@ -1,5 +1,5 @@
 {
-  "balance": 1438.0666249999974,
+  "balance": 1388.0661049999974,
   "positions": {
     "553828_yes": {
       "market_id": "553828",
@@ -182,16 +182,6 @@
       "bought_at": "2026-02-20T18:01:01.694661",
       "score": 44
     },
-    "hp_1386656_no": {
-      "market_id": "1386656",
-      "question": "US strikes Iran by February 22, 2026?",
-      "side": "no",
-      "shares": 106.14,
-      "avg_price": 0.945,
-      "bought_at": "2026-02-20T22:15:28.950305",
-      "score": 65,
-      "high_prob": true
-    },
     "hp_654414_yes": {
       "market_id": "654414",
       "question": "Will there be no change in Fed interest rates after the March 2026 meeting?",
@@ -241,6 +231,16 @@
       "bought_at": "2026-02-21T08:02:18.834823",
       "strategy": "hp",
       "score": 5
+    },
+    "hp_566737_no": {
+      "market_id": "566737",
+      "question": "Will Lens win the 2025–26 French Ligue 1?",
+      "side": "no",
+      "shares": 170.89,
+      "avg_price": 0.9025,
+      "bought_at": "2026-02-22T00:00:21.591857",
+      "strategy": "hp",
+      "score": 15
     }
   },
   "history": [
@@ -1521,6 +1521,28 @@
       "shares": 168.81,
       "strategy": "hp",
       "time": "2026-02-21T08:02:18.834827"
+    },
+    {
+      "action": "sell",
+      "question": "US strikes Iran by February 22, 2026?",
+      "side": "no",
+      "price": 0.982,
+      "shares": 106.14,
+      "proceeds": 104.23,
+      "profit": 3.93,
+      "reason": "已结算 (98.2¢)",
+      "strategy": "fear",
+      "time": "2026-02-22T00:00:21.590525"
+    },
+    {
+      "action": "buy",
+      "question": "Will Lens win the 2025–26 French Ligue 1?",
+      "side": "no",
+      "price": 0.9025,
+      "amount": 154.23,
+      "shares": 170.89,
+      "strategy": "hp",
+      "time": "2026-02-22T00:00:21.591861"
     }
   ],
   "daily_snapshots": [
@@ -1550,5 +1572,5 @@
     }
   ],
   "created": "2026-02-18T10:31:42.254192",
-  "last_trade": "2026-02-21T21:48:51.849250"
+  "last_trade": "2026-02-22T00:00:21.591865"
 }
